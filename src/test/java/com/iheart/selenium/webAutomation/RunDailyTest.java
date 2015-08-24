@@ -30,8 +30,8 @@ public class RunDailyTest {
 	
 	
 	
-	String browser = "firefox";
-	//String browser = "chrome";
+///	String browser = "firefox";
+	String browser = "chrome";
 	
 	static String userCity = "";
 	
