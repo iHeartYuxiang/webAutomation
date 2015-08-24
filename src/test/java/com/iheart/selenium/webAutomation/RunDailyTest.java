@@ -30,8 +30,8 @@ public class RunDailyTest {
 	
 	
 	
-	String browser = "firefox";
-	//String browser = "chrome";
+	//String browser = "firefox";
+	String browser = "chrome";
 	
 	static String userCity = "";
 	
@@ -84,6 +84,7 @@ public class RunDailyTest {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
+	     /*
 	     @Test
 	        public void testWEB_11737_loginWithEmail() throws Exception
 	        {
@@ -340,7 +341,7 @@ public class RunDailyTest {
 	        }
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
-	     
+	     */
 	
 	     @After
 		    public void tearDown() throws Exception{
