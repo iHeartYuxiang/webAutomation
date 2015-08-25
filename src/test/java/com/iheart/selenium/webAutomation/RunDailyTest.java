@@ -55,7 +55,6 @@ public class RunDailyTest {
         Page.getErrors().delete(0, Page.getErrors().length());
     }
 
-/*
 	    @Test
 	    public void testWEB_11734_startUp() throws Exception
 	    {
@@ -70,19 +69,8 @@ public class RunDailyTest {
 	        
 	    }
 	
-	  */  
-	     @Test
-	     public void testWEB_11736_signUp() throws Exception
-	     {   
-	         System.out.println("test method:" +  name.getMethodName() );
-	         try{
-	             homePage.WEB_11736_signUp();
-	         }catch(Exception e)
-	         {
-	             handleException(e);
-	         }      
-	         System.out.println(name.getMethodName() + " is Done.");
-	     }
+	   
+	     
 	     
 	     
 	     @Test
@@ -100,6 +88,21 @@ public class RunDailyTest {
 	     
 	     
 	       /*
+	        * 
+	        * 
+	        @Test
+	     public void testWEB_11736_signUp() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	             homePage.WEB_11736_signUp();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }      
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
+	        
 	     
 	     @Test
 	        public void testWEB_11737_loginWithEmail() throws Exception
