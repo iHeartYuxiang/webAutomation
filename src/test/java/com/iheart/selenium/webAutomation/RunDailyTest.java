@@ -29,9 +29,8 @@ public class RunDailyTest {
 	ProfilePage profilePage;
 	
 	
-	
-//	String browser = "firefox";
-	String browser = "chrome";
+		String browser = "firefox";
+	//String browser = "chrome";
 	
 	static String userCity = "";
 	

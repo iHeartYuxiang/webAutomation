@@ -719,8 +719,8 @@ public abstract class Page {
 		   if (icon_favorite_filled.isDisplayed())
 		   {  
 			   icon_favorite_filled.click();
-		       //WaitUtility.sleep(1000);
-			   WaitUtility.waitForAjax(driver);
+		       WaitUtility.sleep(1000);
+			  // WaitUtility.waitForAjax(driver);
 		   }
 	    }catch(Exception e)
 	    {

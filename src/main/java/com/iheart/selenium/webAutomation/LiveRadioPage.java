@@ -394,7 +394,7 @@ public class LiveRadioPage extends Page {
 		//gotoExplorerOption(option_liveRadio, "Live");
 		comeToThisPage_direct();
 		firstLive.click();
-		WaitUtility.waitForAjax(driver);
+		WaitUtility.sleep(1000);
 		makeSureItIsPlaying();
 		
 		

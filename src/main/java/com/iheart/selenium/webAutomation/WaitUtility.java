@@ -35,7 +35,7 @@ public class WaitUtility {
 	              System.out.println("Timeout waiting for Page Load Request to complete.");
 	      }
 	 } 
-	
+	/*
 	public static void waitForAjax(WebDriver driver)
 	{    injectJQuery(driver);
 		//Check: how many on-going ajax call on this page?
@@ -53,6 +53,7 @@ public class WaitUtility {
 		System.out.println("Active Ajax call count after waiting:" + ajaxCallCount);
 	}
 
+	*/
 	
 	/** dynamically load jQuery */
 	public static void injectJQuery(WebDriver driver){
