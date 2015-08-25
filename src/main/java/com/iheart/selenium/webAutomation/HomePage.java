@@ -350,7 +350,9 @@ public class HomePage extends Page {
 	
 	
 	public void WEB_11736_signUp()
-	{   loginButton.click();
+	{   WaitUtility.sleep(1000);
+		loginButton.click();
+		WaitUtility.sleep(500);
 		signUpLink.click();
 		signUp();
 	}

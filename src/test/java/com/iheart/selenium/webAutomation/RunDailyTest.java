@@ -55,7 +55,7 @@ public class RunDailyTest {
         Page.getErrors().delete(0, Page.getErrors().length());
     }
 
-
+/*
 	    @Test
 	    public void testWEB_11734_startUp() throws Exception
 	    {
@@ -69,7 +69,8 @@ public class RunDailyTest {
 	        System.out.println(name.getMethodName() + " is Done.");
 	        
 	    }
-	    
+	
+	  */  
 	     @Test
 	     public void testWEB_11736_signUp() throws Exception
 	     {   
@@ -349,7 +350,7 @@ public class RunDailyTest {
 		    	if (Page.getErrors().length() > 0)
 					 fail(Page.getErrors().toString());
 		    	
-		    	closeBrowserSession();
+		    	//closeBrowserSession();
 		    }
 		
 		    private void handleException(Exception e)
