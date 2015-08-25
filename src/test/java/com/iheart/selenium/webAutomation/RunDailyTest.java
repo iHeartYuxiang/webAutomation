@@ -84,6 +84,21 @@ public class RunDailyTest {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
+	     
+	     @Test
+	        public void testWEB_11740_search() throws Exception
+	        {
+	            System.out.println("test method:" +  name.getMethodName() );
+	            try{
+	                   homePage.WEB_11740_search();
+	            }catch(Exception e)
+	             {
+	                 handleException(e);
+	             }        
+	            System.out.println(name.getMethodName() + " is Done.");
+	        }
+	     
+	     
 	       /*
 	     
 	     @Test
@@ -145,18 +160,6 @@ public class RunDailyTest {
 	            System.out.println(name.getMethodName() + " is Done.");
 	        }
 	     
-	     @Test
-	        public void testWEB_11740_search() throws Exception
-	        {
-	            System.out.println("test method:" +  name.getMethodName() );
-	            try{
-	                   homePage.WEB_11740_search();
-	            }catch(Exception e)
-	             {
-	                 handleException(e);
-	             }        
-	            System.out.println(name.getMethodName() + " is Done.");
-	        }
 	     
 	     
 	     @Test
