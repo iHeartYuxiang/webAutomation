@@ -53,7 +53,7 @@ public class ProfilePage extends Page {
 		
 		firstStation.click();
 		makeSureItIsPlaying();
-		//verifyPlayer("station");
+		verifyPlayer("station", "WEB_11779_playStations");
 		System.out.println("Done with station.");
 		driver.navigate().refresh();
 		comeToThisPage_direct();
@@ -62,7 +62,7 @@ public class ProfilePage extends Page {
 		firstSong.click();
 		makeSureItIsPlaying();
 		
-		//verifyPlayer("chosen song from Listen Hisotry ");
+		verifyPlayer("chosen song from Listen Hisotry ", "WEB_11779_playStations");
 		System.out.println("Done with Listen Hisotry.");
 		
 		driver.navigate().refresh();
@@ -77,7 +77,7 @@ public class ProfilePage extends Page {
 	    }
 		
 		makeSureItIsPlaying();
-		//verifyPlayer("chosen favorite song");
+		verifyPlayer("chosen favorite song", "WEB_11779_playStations");
 		System.out.println("Done with favorite song.");
 		
 		driver.navigate().refresh();
@@ -87,7 +87,7 @@ public class ProfilePage extends Page {
 		WaitUtility.sleep(1000);
 		firstFavEpisode.click();
 		makeSureItIsPlaying();
-		//verifyPlayer("favorite episode");
+		verifyPlayer("favorite episode", "WEB_11779_playStations");
 		System.out.println("Done with favorite episode.");
 		
 	}

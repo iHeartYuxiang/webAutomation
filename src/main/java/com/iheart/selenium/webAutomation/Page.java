@@ -218,6 +218,8 @@ public abstract class Page {
 	@FindBy(css="button.playing:nth-child(3)") public WebElement button_pause;
 	
 	@FindBy(css=".icon-play") public WebElement icon_play;
+    @FindBy(css="button.idle:nth-child(3)")  public WebElement icon_play_inPlayer;
+   
 	@FindBy(css=".icon-stop") public WebElement icon_stop;
 	@FindBy(css=".icon-pause") public WebElement icon_pause;
 	@FindBy(css="#player > div.player-right.ui-on-dark > button:nth-child(2) > span:nth-child(3)") 
@@ -519,11 +521,12 @@ public abstract class Page {
 	{   
 	    try{
 
-		    icon_play.isDisplayed();
+		    //icon_play.isDisplayed();
+	    	icon_play_inPlayer.isDisplayed();
 	
 		    System.out.println("Music is not playing. About to click.");
 	
-			icon_play.click();
+		    icon_play_inPlayer.click();
 
 	    }catch(Exception e)
 
@@ -559,25 +562,7 @@ public abstract class Page {
 		
 	}
 	
-	public void handlePreRoll_OLD()
-	{
-		//Wait for pre-roll if adContainer is detected
-		   try {
-			   if (adContainer.isDisplayed() && adContainer.isEnabled())
-			   {	
-				   System.out.println("Pre-roll is taking over the planet. Wait...");
-				   String duration = driver.findElement(By.cssSelector(".seconds")).getText();
-				   System.out.println("duration:" + duration);
-				   int milliSeconds = (Integer.parseInt(duration))*1000;
-				   System.out.println("milliSeconds:" + milliSeconds );
-				   WaitUtility.sleep(milliSeconds);
-			   
-			   }
-		   }catch(Exception e)
-		   {   e.printStackTrace();
-			   System.out.println("No pre-roll is detected.");
-		   }
-	}
+	
 	
 	public void makeSureItIsPlayingWithNoWait()
 	{   
@@ -600,14 +585,14 @@ public abstract class Page {
 
 	    try{
 
-		    icon_play.isDisplayed();
-	
+		   // icon_play.isDisplayed();
+	    	icon_play_inPlayer.isDisplayed();
 		    System.out.println("Music is not playing. Good");
 
 	    }catch(Exception e)
 
 	    {   System.out.println("Music is playing. click to stop it ");
-	    	icon_play.click();
+	    	icon_play_inPlayer.click();
 		
 	    	//Wait for pre-roll
 	
