@@ -49,7 +49,7 @@ public class PerfectForPage extends Page{
 	    
 	    comeToThisPage_direct();
 		new Select(activity).selectByIndex(3);
-		
+		WaitUtility.sleep(1000);
 		firstBox_activity.click();
 		makeSureItIsPlaying();
 		
