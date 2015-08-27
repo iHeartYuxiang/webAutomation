@@ -76,7 +76,7 @@ public class CustomRadioPage  extends Page {
 		  
 		
 			new Select(driver.findElement(By.name("genre"))).selectByIndex(5); 
-			//WaitUtility.waitForAjax(driver);
+			WaitUtility.sleep(1000);
 			customFirstLinkPlayButton.click();
 			
 		}
@@ -117,7 +117,15 @@ public class CustomRadioPage  extends Page {
 			playCustomRadioAfterLogin();
 			
 			//Get the current song playing
-			String songPlaying = currentSong.getText();
+			
+			String songPlaying = "";
+			try{
+		       songPlaying = currentSong.getText();
+			}catch(Exception e)
+			{
+				System.out.println("Hit the commercial. no song to thump up.");
+				return;
+			}
 			System.out.println("It is playing:" + songPlaying);
 			
 			doThumbUp("WEB_11763_thumpUpCustom");

@@ -409,7 +409,13 @@ public class LiveRadioPage extends Page {
 			WaitUtility.sleep(2000);
 		}
 		
-		thumbDown.click();
+		try{
+		    thumbDown.click();
+		} catch(Exception e)
+		{
+			System.out.println("Hit the commercial time. return now.");
+			return;
+		}
 		WaitUtility.sleep(200);
 		//String hint = growls.getText();
 		String response = driver.findElement(By.className("growls")).getText();

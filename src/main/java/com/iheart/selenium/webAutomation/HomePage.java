@@ -433,7 +433,7 @@ public class HomePage extends Page {
 		}while (!driver.getPageSource().contains("Don't have an account?"));
 		
 		googleButton.click();
-		
+		WaitUtility.sleep(1000);
 		//Need to switch Windows here
 		String winHandleBefore = switchWindow();
 		googEmail.sendKeys(FACEBOOKemail);

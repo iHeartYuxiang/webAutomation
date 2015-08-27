@@ -50,24 +50,22 @@ public class ProfilePage extends Page {
 		//gotoSingedAccountOption(option_profile, "User Profile");
 		comeToThisPage_direct();
 		
-		//myStations.click();
-		//WaitUtility.waitForAjax(driver);
+		
 		firstStation.click();
 		makeSureItIsPlaying();
 		verifyPlayer("station");
-		
+		System.out.println("Done with station.");
 		driver.navigate().refresh();
-		//gotoSingedAccountOption(option_profile, "User Profile");
 		comeToThisPage_direct();
 		history.click();
 		WaitUtility.sleep(1000);
 		firstSong.click();
 		makeSureItIsPlaying();
-		//makeSureItIsPlayingWithNoWait();
+		
 		verifyPlayer("chosen song from Listen Hisotry ");
+		System.out.println("Done with Listen Hisotry.");
 		
 		driver.navigate().refresh();
-	//	gotoSingedAccountOption(option_profile, "User Profile");
 		comeToThisPage_direct();
 		favoriteSongs.click();
 		WaitUtility.sleep(1000);
@@ -79,20 +77,18 @@ public class ProfilePage extends Page {
 	    }
 		
 		makeSureItIsPlaying();
-		//makeSureItIsPlayingWithNoWait();
 		verifyPlayer("chosen favorite song");
+		System.out.println("Done with favorite song.");
 		
 		driver.navigate().refresh();
-		//gotoSingedAccountOption(option_profile, "User Profile");
 		comeToThisPage_direct();
 		
 		favoriteEpisodes.click();
 		WaitUtility.sleep(1000);
-		//WaitUtility.waitForAjax(driver);
 		firstFavEpisode.click();
 		makeSureItIsPlaying();
-		//makeSureItIsPlayingWithNoWait();
 		verifyPlayer("favorite episode");
+		System.out.println("Done with favorite episode.");
 		
 	}
 	
@@ -267,7 +263,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		//WaitUtility.sleep(1000);
+		WaitUtility.sleep(1000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	
@@ -282,7 +278,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		//WaitUtility.sleep(1000);
+		WaitUtility.sleep(1000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	
@@ -296,7 +292,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		//WaitUtility.sleep(1000);
+		WaitUtility.sleep(1000);
 		////WaitUtility.waitForAjax(driver);
 	}
 	

@@ -185,7 +185,7 @@ public class PodcastsPage  extends Page{
 	     makeSureItIsPlaying();
 	    
 	    doThumbUp("WEB_11776_thumbUp");
-		doSkip();
+		//doSkip();
 			
 	}
 	
@@ -302,7 +302,7 @@ public class PodcastsPage  extends Page{
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		////WaitUtility.waitForAjax(driver);
+		WaitUtility.sleep(1000);
 	}
 
 

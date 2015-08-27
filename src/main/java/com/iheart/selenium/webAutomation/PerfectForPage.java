@@ -205,7 +205,7 @@ public class PerfectForPage extends Page{
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-	//	WaitUtility.sleep(1000);
+		WaitUtility.sleep(1000);
 		////WaitUtility.waitForAjax(driver);
 	}
 

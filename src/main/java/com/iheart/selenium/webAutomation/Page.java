@@ -197,7 +197,8 @@ public abstract class Page {
 	@FindBy(xpath="//*[@id='dialog']/div/div[2]/div[2]/div/form/button")  public WebElement login;
 	
 	//login wiht G+
-	@FindBy(css="#dialog > div > div.dialog.ui-on-grey > div.wrapper > div > section > ul > li:nth-child(2) > button") public WebElement googleButton;
+	//@FindBy(css="#dialog > div > div.dialog.ui-on-grey > div.wrapper > div > section > ul > li:nth-child(2) > button") public WebElement googleButton;
+	@FindBy(css=".google-plus") public WebElement googleButton;
 	
 	//GROWLS
 	@FindBy(css=".growls") public WebElement growls;
@@ -499,7 +500,9 @@ public abstract class Page {
 	    password.sendKeys(_PASSWORD);
 	    zipCode.sendKeys("10013");
 	    new Select(birthYear).selectByVisibleText("1980");
+	    WaitUtility.sleep(500);
 	    gender_female.click();
+	    WaitUtility.sleep(500);
 	    termsAcceptanceDate.click();
 	    signUp.click();
 	    
@@ -697,7 +700,14 @@ public abstract class Page {
 		{
 			
 		}
-		thumbUp.click();
+		try{
+		   thumbUp.click();
+		} catch(Exception e)
+		{
+			System.out.println("Hit the commercial time. return now.");
+			return;
+		}
+		
 		WaitUtility.sleep(500);
 		
 		//check to make sure that thumpUp Icon is filled
@@ -767,7 +777,6 @@ public abstract class Page {
 	{  
 		verifyPlayer(category, "verifyPlayer");
 	}
-	
 	
 	
 	public void verifyPlayer(String category, String testMethod)
