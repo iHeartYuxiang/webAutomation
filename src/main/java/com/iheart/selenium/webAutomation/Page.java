@@ -495,7 +495,8 @@ public abstract class Page {
 		//Signup 
 		//tweak email so that we won't get user already singed up error 
 		String  randomEmail_firstPart = getCurrentDateInMilli();
-		String _email = randomEmail_firstPart + "@gmail.com";
+		//String _email = randomEmail_firstPart + "@gmail.com";
+		String _email = randomEmail_firstPart + "@mailinator.com";
 		System.out.println("See randomEmail:" + _email);
 		WaitUtility.sleep(800);
 	    email.sendKeys(_email);
