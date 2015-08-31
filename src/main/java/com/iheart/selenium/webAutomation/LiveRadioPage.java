@@ -509,9 +509,9 @@ public class LiveRadioPage extends Page {
 	
 	
 	public void gotoGenrePage_direct()
-	{  
+	{    WaitUtility.sleep(3000);
 		driver.findElement(By.cssSelector(".header-menu-main > li:nth-child(2) > a:nth-child(1)")).click();
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	

@@ -236,7 +236,7 @@ public class CustomRadioPage  extends Page {
 		}
 		
 		private void comeToThisPage_direct()
-		{  /*
+		{  
 			String currentURL = driver.getCurrentUrl();
 			System.out.println("SEE current url:"  + currentURL);
 		    String part1 = currentURL.split("//")[0];
@@ -246,14 +246,11 @@ public class CustomRadioPage  extends Page {
 			System.out.println("SEE new url:"  + newURL );
 			
 			driver.get(newURL);
-			//WaitUtility.sleep(1000);
-			////WaitUtility.waitForAjax(driver);
-			 * 
-			 */
+			 
 			
 			
-			driver.findElement(By.cssSelector(".header-menu-main > li:nth-child(3) > a:nth-child(1)")).click();
-			WaitUtility.sleep(2000);
+		//	driver.findElement(By.cssSelector(".header-menu-main > li:nth-child(3) > a:nth-child(1)")).click();
+			WaitUtility.sleep(3000);
 			
 		}
 

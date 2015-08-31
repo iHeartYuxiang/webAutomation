@@ -56,7 +56,18 @@ public class Failed {
 	    }
 
 		
-     
+		 @Test
+	     public void testWEB_11736_signUp() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	             homePage.WEB_11736_signUp();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }      
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
 		   
 		 @Test
 		 public void testWEB_11776_thumbUpPodcasts() throws Exception
@@ -71,11 +82,22 @@ public class Failed {
 		 	System.out.println(name.getMethodName() + " is Done.");
 		 }
 		 
-		
+		 @Test
+	     public void testWEB_11761_filterAndPlayCustomAfterLogin() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	            customRadioPage.WEB_11761_filterAndPlayCustomAfterLogin();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }  
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
 		 
 	    @After
 	    public void tearDown() throws Exception{
-	    	//driver.quit(); 
+	    	driver.quit(); 
 	    	if (Page.getErrors().length() > 0)
 				 fail(Page.getErrors().toString());
 	    	
