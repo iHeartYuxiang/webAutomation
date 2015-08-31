@@ -809,8 +809,16 @@ public abstract class Page {
 	
 	
 	public void faceBookSignUp()
-	{  
-		faceBook.click();
+	{   try{
+		   faceBook.click();
+		   WaitUtility.sleep(1000);
+		}catch(Exception e)
+		{
+			//Sometimes signup page won't show up after a few more seconds waiting
+			WaitUtility.sleep(10000);
+			faceBook.click();
+			WaitUtility.sleep(1000);
+		}
 		String winHandleBefore = switchWindow();
 		
 		faceEmail.sendKeys(FACEBOOKemail);

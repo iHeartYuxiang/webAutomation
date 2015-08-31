@@ -51,7 +51,7 @@ public class RunSanity {
 	        Page.getErrors().delete(0, Page.getErrors().length());
 	    }
 		
-		 @Test
+		 @Test  
 		 public void testWEB_11749_playStationAfterLogin() throws Exception
 		 {   
 		 	System.out.println("test method:" +  name.getMethodName() );

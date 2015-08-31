@@ -19,9 +19,11 @@ public class PodcastsPage  extends Page{
 	
 	//@FindBy(css="#main > div > div.filters > div > div > select") private WebElement topics; //This works fine for Firefox
 	@FindBy(name="category") private WebElement topics; //topics for podcasts
+	//@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)") 
+	@FindBy(css="ul.station-tiles:nth-child(3) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")
+	              private WebElement firstPod;
 	
-	@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)") 
-	    private WebElement firstPod;
+	//button.playing:nth-child(2)
 	//CSS PATH IN CHROME
 	//#main > div > div:nth-child(2) > section:nth-child(1) > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i
 	//@FindBy(css="ul.station-tiles:nth-child(3) > li:nth-child(1) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)")
@@ -169,17 +171,13 @@ public class PodcastsPage  extends Page{
 	public void WEB_11776_thumbUp()
 	{
 		login();
-		//WaitUtility.waitForAjax(driver);
-		//gotoExplorerOption(option_podCasts,"Popular");
 		comeToThisPage_direct();
-		
-		//Need to remember this station name
-	   // WaitUtility.sleep(1000);
 		
 	
 		String chosenStation = firstPodName.getText();
 		System.out.println("See chosenStation:" + chosenStation);
-		  
+		
+		
 	    firstPod.click();
 	    //WaitUtility.waitForAjax(driver);
 	     makeSureItIsPlaying();
@@ -282,13 +280,7 @@ public class PodcastsPage  extends Page{
 	
 
 	public void comeToThisPage()
-	{   /*
-		if (isChrome)
-			gotoExplorerOption(option_podCasts_xpath,"Popular");
-		else	
-		    gotoExplorerOption(option_podCasts,"Popular");
-		*/
-	 //   if (!driver.getTitle().contains("Popular"))
+	{   
 	    	comeToThisPage_direct();
 	}
 	
