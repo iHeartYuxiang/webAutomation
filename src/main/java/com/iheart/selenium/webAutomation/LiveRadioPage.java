@@ -35,7 +35,8 @@ public class LiveRadioPage extends Page {
 	*/
 		@FindBy(css=".country-filter > div:nth-child(1) > select:nth-child(2)") public WebElement country;
 		@FindBy(css=".market-filter > div:nth-child(1) > select:nth-child(2)") public WebElement city;
-		@FindBy(css="div.form-group:nth-child(3) > div:nth-child(1) > select:nth-child(2)") public WebElement genres;
+		//@FindBy(css="div.form-group:nth-child(3) > div:nth-child(1) > select:nth-child(2)") public WebElement genres;
+		@FindBy(css=".header-menu-main > li:nth-child(4) > a:nth-child(1)")  public WebElement genres;
 		
 		@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)") public WebElement firstStation;
 		@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)") public WebElement firstStationLabel;
@@ -493,7 +494,7 @@ public class LiveRadioPage extends Page {
 		WaitUtility.sleep(1000);
 	}
 	
-	public void gotoGenrePage_direct_old()
+	public void gotoGenrePage_direct()
 	{   String currentURL = driver.getCurrentUrl();
 		System.out.println("SEE current url:"  + currentURL);
 	    String part1 = currentURL.split("//")[0];
@@ -503,12 +504,12 @@ public class LiveRadioPage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		//WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	
 	
-	public void gotoGenrePage_direct()
+	public void gotoGenrePage_direct_NEW()
 	{    WaitUtility.sleep(3000);
 		driver.findElement(By.cssSelector(".header-menu-main > li:nth-child(2) > a:nth-child(1)")).click();
 		WaitUtility.sleep(2000);
