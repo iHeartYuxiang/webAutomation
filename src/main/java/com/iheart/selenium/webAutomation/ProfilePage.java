@@ -263,7 +263,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	
@@ -278,7 +278,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		//WaitUtility.waitForAjax(driver);
 	}
 	
@@ -292,7 +292,7 @@ public class ProfilePage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		////WaitUtility.waitForAjax(driver);
 	}
 	
