@@ -35,7 +35,7 @@ public class LiveRadioPage extends Page {
 	*/
 		@FindBy(css=".country-filter > div:nth-child(1) > select:nth-child(2)") public WebElement country;
 		@FindBy(css=".market-filter > div:nth-child(1) > select:nth-child(2)") public WebElement city;
-		//@FindBy(css="div.form-group:nth-child(3) > div:nth-child(1) > select:nth-child(2)") public WebElement genres;
+		@FindBy(css="div.form-group:nth-child(3) > div:nth-child(1) > select:nth-child(2)") public WebElement genres_dropDown;
 		@FindBy(css=".header-menu-main > li:nth-child(4) > a:nth-child(1)")  public WebElement genres;
 		
 		@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)") public WebElement firstStation;
@@ -279,8 +279,8 @@ public class LiveRadioPage extends Page {
 		WaitUtility.sleep(2000);
 		//new Select(city).selectByIndex(3);
 		new Select(driver.findElement(By.name("city"))).selectByIndex(1);
-		WaitUtility.sleep(1000);
-		new Select(genres).deselectByIndex(2);
+		WaitUtility.sleep(2000);
+		new Select(genres_dropDown).deselectByIndex(2);
 	}
 
 	public void WEB_11745_International()
@@ -522,7 +522,7 @@ public class LiveRadioPage extends Page {
 	
 		if (!driver.getTitle().contains("Genres"))
 			gotoGenrePage_direct();
-	}
+	}    
 
 
 
