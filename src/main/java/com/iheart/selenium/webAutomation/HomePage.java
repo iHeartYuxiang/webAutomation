@@ -474,9 +474,9 @@ public class HomePage extends Page {
 		
 		List<WebElement> resultRows = driver.findElements(By.className("search-section"));
 		System.out.println(resultRows.size() + " rows are suggested.");
-		boolean failed = true;
-		//if (resultRows == null || resultRows.size() <1)
-		if (failed)
+	//	boolean failed = true;
+		//if (failed)
+		if (resultRows == null || resultRows.size() <1)
 	    	errors.append("No suggestion is found.");
 	    
 	}

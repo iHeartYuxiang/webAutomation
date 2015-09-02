@@ -97,8 +97,7 @@ public class RunDailyTest {
 	            System.out.println(name.getMethodName() + " is Done.");
 	        }
 	     
-	   /*  
-	     
+	   
 	     
 	        @Test
 	     public void testWEB_11736_signUp() throws Exception
@@ -359,7 +358,7 @@ public class RunDailyTest {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
-	*/
+	
 	     @After
 		    public void tearDown() throws Exception{
 	    	   // driver.quit(); 
