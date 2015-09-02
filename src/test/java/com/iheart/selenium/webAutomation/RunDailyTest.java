@@ -68,12 +68,12 @@ public class RunDailyTest {
 	             handleException(e);
 	         }
 	              System.out.println(name.getMethodName() + " is Done.");
-	              fail(Page.getErrors().toString());
+	            
 	    }
 	
 	   
 	     
-	     /*
+	    
 	     
 	     @Test
 	        public void testWEB_11740_search() throws Exception
@@ -88,6 +88,7 @@ public class RunDailyTest {
 	            System.out.println(name.getMethodName() + " is Done.");
 	        }
 	     
+	   /*  
 	     
 	     
 	        @Test
@@ -352,7 +353,7 @@ public class RunDailyTest {
 	*/
 	     @After
 		    public void tearDown() throws Exception{
-	    	    driver.quit(); 
+	    	   // driver.quit(); 
 		    	if (Page.getErrors().length() > 0)
 					 fail(Page.getErrors().toString());
 		    	   
@@ -362,12 +363,14 @@ public class RunDailyTest {
 		    private void handleException(Exception e)
 		    {   Page.getErrors().append("Exception is thrown.");
 		        e.printStackTrace();
+		        /*
 	            try{
 		    	   Page.takeScreenshot(driver, name.getMethodName());
 	            }catch(Exception eX)
 	            {
 	            	
 	            }
+	            */
 		    }
 		    
 		   
