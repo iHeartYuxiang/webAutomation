@@ -68,7 +68,7 @@ public class RunDailyTest {
 	             handleException(e);
 	         }
 	              System.out.println(name.getMethodName() + " is Done.");
-	        
+	              fail(Page.getErrors().toString());
 	    }
 	
 	   
