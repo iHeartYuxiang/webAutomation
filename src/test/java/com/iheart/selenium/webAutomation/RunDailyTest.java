@@ -397,7 +397,8 @@ public class RunDailyTest {
 		        		
 		        		System.out.println("TestWatcher: in failed method now..");
 		        		
-		        		 Page.takeScreenshot(driver, name.getMethodName());
+		        		 //Page.takeScreenshot(driver, name.getMethodName());
+		        		Page.takeScreenshotForJenkins(driver, name.getMethodName());
 		        		
 		            } catch(Exception ex) {
 		                System.out.println(ex.toString());
