@@ -9,6 +9,8 @@ import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import org.junit.runner.Description;
+
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -323,25 +325,6 @@ public abstract class Page {
            System.out.println("Screenshot is taken.");
    }
    
-   //In order to make it linked to the failed case, screenshot needs to be put under \\target\\surefire-reports\\
-   public static void takeScreenshotForJenkins(WebDriver driver, String testMethod) throws Exception 
-   {     
-	   String currentPath =  System.getProperty("user.dir");
-	   String path = currentPath + "\\target\\surefire-reports\\";
-	   System.out.println("Current path:" + path);
-	   
-	        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss");
-   			Date date = new Date();
-   			//System.out.println(dateFormat.format(date)); //2014/08/06 15:59:48
-	       String screenshotName = testMethod + dateFormat.format(date) + ".png";
-	       System.out.println("See screenshotName:" + screenshotName);
-	       
-	       Path screenshotPath = Paths.get(path, screenshotName);
-           File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-        //The below method will save the screen shot in d drive with name "screenshot.png"
-           FileUtils.copyFile(scrFile, screenshotPath.toFile());
-           System.out.println("Screenshot is taken.");
-   }
    
    
    public static void takeScreenshotInCloud(WebDriver driver, String testMethod) throws Exception 

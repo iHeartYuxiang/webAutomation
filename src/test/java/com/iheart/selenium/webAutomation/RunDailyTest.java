@@ -3,6 +3,15 @@ package com.iheart.selenium.webAutomation;
 
 import com.iheart.selenium.webAutomation.*;
 
+import java.io.File;
+import java.util.Date;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+
 import static org.junit.Assert.*; 
 
 import org.junit.Test; 
@@ -386,19 +395,17 @@ public class RunDailyTest {
 		        public void failed(Throwable e, Description description) {
 		          
 		        	try {
-		               /*
+		               
 		        		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 
-		                String filePathRoot = "C:\\_Jenkins\\workspace\\" + jenkinsJobName + "\\target\\surefire-reports\\";
-		                String fullFilePath = filePathRoot + description.getClassName() + "\\" + description.getMethodName() + ".jpg";
+		               // String filePathRoot = "C:\\_Jenkins\\workspace\\" + jenkinsJobName + "\\target\\surefire-reports\\";
+		        		String currentPath =  System.getProperty("user.dir");
+		        		String path = currentPath + "\\target\\surefire-reports\\";
+		        		
+		                String fullFilePath = path + description.getClassName() + "\\" + description.getMethodName() + ".jpg";
 
 		                FileUtils.copyFile(screenshot, new File(fullFilePath));
-		                */
-		        		
-		        		System.out.println("TestWatcher: in failed method now..");
-		        		
-		        		 //Page.takeScreenshot(driver, name.getMethodName());
-		        		Page.takeScreenshotForJenkins(driver, name.getMethodName());
+		                
 		        		
 		            } catch(Exception ex) {
 		                System.out.println(ex.toString());
