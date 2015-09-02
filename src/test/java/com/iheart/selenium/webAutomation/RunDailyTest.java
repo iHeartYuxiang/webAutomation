@@ -10,7 +10,10 @@ import org.junit.Ignore;
 import org.junit.Before; 
 import org.junit.After; 
 import org.junit.Rule;
+import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
 import org.junit.rules.TestName;
+import org.junit.runner.Description;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -63,14 +66,14 @@ public class RunDailyTest {
 	         }catch(Exception e)
 	         {
 	             handleException(e);
-	         }    
-	        System.out.println(name.getMethodName() + " is Done.");
+	         }
+	              System.out.println(name.getMethodName() + " is Done.");
 	        
 	    }
 	
 	   
 	     
-	     
+	     /*
 	     
 	     @Test
 	        public void testWEB_11740_search() throws Exception
@@ -346,14 +349,14 @@ public class RunDailyTest {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
-	
+	*/
 	     @After
 		    public void tearDown() throws Exception{
 	    	    driver.quit(); 
 		    	if (Page.getErrors().length() > 0)
 					 fail(Page.getErrors().toString());
+		    	   
 		    	
-		    	//closeBrowserSession();
 		    }
 		
 		    private void handleException(Exception e)
@@ -367,12 +370,37 @@ public class RunDailyTest {
 	            }
 		    }
 		    
-		    //to handle firefox v37.0 specific issue on windows 7
-		    public void closeBrowserSession() throws Exception 
-			  { 
-			    	
-				 Runtime.getRuntime().exec("taskkill /F /IM firefox.exe"); 
-			  }
+		   
+		    
+		    @Rule
+		    public TestRule watcher = new TestWatcher() {
+		        @Override
+		        public void finished(Description description) {
+		            driver.quit();
+		        }
 
+		        @Override
+		        public void failed(Throwable e, Description description) {
+		          
+		        	try {
+		               /*
+		        		File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+
+		                String filePathRoot = "C:\\_Jenkins\\workspace\\" + jenkinsJobName + "\\target\\surefire-reports\\";
+		                String fullFilePath = filePathRoot + description.getClassName() + "\\" + description.getMethodName() + ".jpg";
+
+		                FileUtils.copyFile(screenshot, new File(fullFilePath));
+		                */
+		        		
+		        		 Page.takeScreenshot(driver, name.getMethodName());
+		        		
+		            } catch(Exception ex) {
+		                System.out.println(ex.toString());
+		                System.out.println(ex.getMessage());
+		            }
+
+		            driver.quit();
+		        }
+		    };
 	
 }
