@@ -392,6 +392,8 @@ public class RunDailyTest {
 		                FileUtils.copyFile(screenshot, new File(fullFilePath));
 		                */
 		        		
+		        		System.out.println("TestWatcher: in failed method now..");
+		        		
 		        		 Page.takeScreenshot(driver, name.getMethodName());
 		        		
 		            } catch(Exception ex) {
