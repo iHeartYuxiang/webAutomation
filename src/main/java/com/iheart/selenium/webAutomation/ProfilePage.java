@@ -58,7 +58,7 @@ public class ProfilePage extends Page {
 		driver.navigate().refresh();
 		comeToThisPage_direct();
 		history.click();
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		firstSong.click();
 		makeSureItIsPlaying();
 		
@@ -68,7 +68,7 @@ public class ProfilePage extends Page {
 		driver.navigate().refresh();
 		comeToThisPage_direct();
 		favoriteSongs.click();
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 	    try{
 		   firstFavSong.click();
 	    }catch(Exception e)
@@ -84,7 +84,7 @@ public class ProfilePage extends Page {
 		comeToThisPage_direct();
 		
 		favoriteEpisodes.click();
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 		firstFavEpisode.click();
 		makeSureItIsPlaying();
 		verifyPlayer("favorite episode", "WEB_11779_playStations");

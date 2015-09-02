@@ -57,35 +57,36 @@ public class Failed {
 		
 		
 		 @Test
-	        public void testWEB_11744_filterStation() throws Exception
-	        {
-	            System.out.println("test method:" +  name.getMethodName() );
-	            try
-	            {
-	               liveRadioPage.WEB_11744_filterStation();
-	            }catch(Exception e)
-	            {
-	                handleException(e);
-	            }
-	            System.out.println(name.getMethodName() + " is Done.");
-	        }
-		 
-		 @Test
-	     public void testWEB_11750_filterLiveStationAfterLogin() throws Exception
+	     public void testWEB_11779_playStations() throws Exception
 	     {   
 	         System.out.println("test method:" +  name.getMethodName() );
-	         try
-	        {
-	             liveRadioPage.WEB_11750_filterLiveStationAfterLogin();
-	        }catch(Exception e)
-	        {
-	            handleException(e);
-	        }
+	         try{
+	            profilePage.WEB_11779_playStations();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }  
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 		
-
 		/*
+		
+		 @Test
+	     public void testWEB_11763_thumpUpCustom() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	            customRadioPage.WEB_11763_thumpUpCustom();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }  
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
+	     
+		 
+
+		
 		 @Test
 		 public void testWEB_11779_playStations() throws Exception
 		 {   

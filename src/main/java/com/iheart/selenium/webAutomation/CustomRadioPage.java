@@ -37,6 +37,7 @@ public class CustomRadioPage  extends Page {
 	  	@FindBy(css="li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")
 	  				private WebElement customFirstLinkPlayButton;
 	  	
+	  	 	
 	  	//@FindBy(css="#main > div > section > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i") private WebElement customFirstLinkPlayButton;
 	    @FindBy(css="button.text:nth-child(4)") private WebElement customSkipButton;
 	  	@FindBy(css=".favorite") private WebElement  customFavorite; 
@@ -221,17 +222,20 @@ public class CustomRadioPage  extends Page {
 			//gotoExplorerOption(option_customRadio);
 			comeToThisPage_direct();
 			customFirstLinkPlayButton.click();
+			//Sometimes the above play button didn't get clicked . 
+			try{
+			     driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+			}catch(Exception e)
+			{
+				System.out.println("Custom radio is playing fine.");
+			}
+			
+			
 			makeSureItIsPlaying();
 		}
 		
 		public void comeToThisPage()
-		{   /*
-			if (isChrome)
-				gotoExplorerOption(option_customRadio_xpath,"Popular");
-			else	
-			    gotoExplorerOption(option_customRadio,"Popular");
-			*/
-			//if (!driver.getTitle().contains("Popular"))
+		{  
 		    	comeToThisPage_direct();
 		}
 		
@@ -247,9 +251,6 @@ public class CustomRadioPage  extends Page {
 			
 			driver.get(newURL);
 			 
-			
-			
-		//	driver.findElement(By.cssSelector(".header-menu-main > li:nth-child(3) > a:nth-child(1)")).click();
 			WaitUtility.sleep(3000);
 			
 		}
