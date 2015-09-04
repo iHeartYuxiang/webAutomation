@@ -50,44 +50,58 @@ public class ProfilePage extends Page {
 		//gotoSingedAccountOption(option_profile, "User Profile");
 		comeToThisPage_direct();
 		
-		
-		firstStation.click();
-		makeSureItIsPlaying();
-		verifyPlayer("station", "WEB_11779_playStations");
+	   try{
+			firstStation.click();
+			makeSureItIsPlaying();
+			verifyPlayer("station", "WEB_11779_playStations");
+	   }catch(Exception e)
+	   {
+		   
+	   }
 		System.out.println("Done with station.");
 		driver.navigate().refresh();
 		comeToThisPage_direct();
-		history.click();
-		WaitUtility.sleep(2000);
-		firstSong.click();
-		makeSureItIsPlaying();
 		
-		verifyPlayer("chosen song from Listen Hisotry ", "WEB_11779_playStations");
+		try{
+			history.click();
+			WaitUtility.sleep(2000);
+			firstSong.click();
+			makeSureItIsPlaying();
+			
+			verifyPlayer("chosen song from Listen Hisotry ", "WEB_11779_playStations");
+		 }catch(Exception e)
+		   {
+			   
+		   }		
 		System.out.println("Done with Listen Hisotry.");
 		
 		driver.navigate().refresh();
 		comeToThisPage_direct();
-		favoriteSongs.click();
-		WaitUtility.sleep(2000);
-	    try{
-		   firstFavSong.click();
-	    }catch(Exception e)
-	    {
-	    	driver.findElement(By.cssSelector("li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(2) > a:nth-child(1)")).click();
-	    }
-		
-		makeSureItIsPlaying();
-		verifyPlayer("chosen favorite song", "WEB_11779_playStations");
+		try{
+			favoriteSongs.click();
+			WaitUtility.sleep(2000);
+			firstFavSong.click();
+			makeSureItIsPlaying();
+			verifyPlayer("chosen favorite song", "WEB_11779_playStations");
+		 }catch(Exception e)
+		   {
+			   
+		   }	
 		System.out.println("Done with favorite song.");
 		
 		driver.navigate().refresh();
 		comeToThisPage_direct();
 		
-		favoriteEpisodes.click();
-		WaitUtility.sleep(2000);
-		firstFavEpisode.click();
-		makeSureItIsPlaying();
-		verifyPlayer("favorite episode", "WEB_11779_playStations");
+		try{
+		    favoriteEpisodes.click();
+			WaitUtility.sleep(2000);
+			firstFavEpisode.click();
+			makeSureItIsPlaying();
+			verifyPlayer("favorite episode", "WEB_11779_playStations");
+		 }catch(Exception e)
+		   {
+			   
+		   }	
 		System.out.println("Done with favorite episode.");
 		
 	}
