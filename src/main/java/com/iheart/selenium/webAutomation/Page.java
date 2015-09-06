@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.runner.Description;
-
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -493,8 +492,6 @@ public abstract class Page {
 		return errors;
 	}
 	
-	
-	
 	public void signUp()
 	{
 		//Signup 
@@ -507,11 +504,47 @@ public abstract class Page {
 	    email.sendKeys(_email);
 	    password.sendKeys(_PASSWORD);
 	    zipCode.sendKeys("10013");
-	    new Select(birthYear).selectByVisibleText("1980");
+	   //new Select(birthYear).selectByVisibleText("1980");
+	    new Select(birthYear).selectByIndex(20);
 	    WaitUtility.sleep(500);
 	    gender_female.click();
 	    WaitUtility.sleep(500);
 	    termsAcceptanceDate.click();
+	    signUp.click();
+	    
+	    WaitUtility.sleep(2000);
+	    System.out.println("see signed account:" + signedAccount.getText() );
+	    signedAccount.click();
+	    
+	    if (!signedAccount.getText().contains(randomEmail_firstPart))
+	    	errors.append("Signup failed.");
+	    
+	}
+	
+	public void signUp_obsolete()
+	{
+		//Signup 
+		//tweak email so that we won't get user already singed up error 
+		String  randomEmail_firstPart = getCurrentDateInMilli();
+		//String _email = randomEmail_firstPart + "@gmail.com";
+		String _email = randomEmail_firstPart + "@mailinator.com";
+		System.out.println("See randomEmail:" + _email);
+		WaitUtility.sleep(800);
+	    email.sendKeys(_email);
+	    password.sendKeys(_PASSWORD);
+	    zipCode.sendKeys("10013");
+	    
+	    WaitUtility.sleep(500);
+	    gender_female.click();
+	    WaitUtility.sleep(500);
+	    
+	    //new Select(birthYear).selectByVisibleText("1980");
+	    new Select(birthYear).selectByValue("1980");
+	    WaitUtility.sleep(500);
+	    System.out.println("input birth year.");
+	  
+	    termsAcceptanceDate.click();
+	   
 	    signUp.click();
 	    
 	    WaitUtility.sleep(2000);
@@ -847,5 +880,15 @@ public abstract class Page {
 	    WaitUtility.sleep(1000);
 	    shareOnFacebook.click();
 	    driver.switchTo().window(winHandleBefore);
+	}
+	
+	public void clickOnTopPlayButton()
+	{
+		 try{
+		       driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+		    }catch(Exception e)
+		    {
+		    	
+		    }
 	}
 }

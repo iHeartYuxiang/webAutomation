@@ -72,7 +72,13 @@ public class PodcastsPage  extends Page{
 		//WaitUtility.waitForAjax(driver);
 	   // firstPod.click();
 		driver.findElement(By.cssSelector("li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
-	    makeSureItIsPlaying();
+		 try{
+		       driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+	    }catch(Exception e)
+	    {
+	    	
+	    }
+		makeSureItIsPlaying();
 		
 	  //Verify sign-up gate shows up
   		if(!signupHeader.getText().equalsIgnoreCase("Sign Up"))
@@ -87,18 +93,9 @@ public class PodcastsPage  extends Page{
 		
 		//  gotoExplorerOption(option_podCasts,"Popular");
 		comeToThisPage_direct();
-		
-		/*
-	  
-		Actions action = new Actions(driver);
-		
-		 action.moveToElement(explorer).click().perform();
-		 driver.findElement(By.xpath("/html/body/div[1]/div[1]/div[2]/div/div[1]/div/div/nav/ul/li[5]/a")).click();
-		WaitUtility.sleep(500);
-		*/
-		
-				
+			
 		secondPod.click();
+		clickOnTopPlayButton();
 		makeSureItIsPlaying();
 		//verify the player is playing
 		try
@@ -155,6 +152,7 @@ public class PodcastsPage  extends Page{
 		String chosenStation = firstPodName.getText();
 		System.out.println("See chosenStation:" + chosenStation);
 	    firstPod.click();
+	    clickOnTopPlayButton();
 	    
 	    doFavorite("WEB_11775_addShowToFavorite");
 	    /*
@@ -179,6 +177,12 @@ public class PodcastsPage  extends Page{
 		
 		
 	    firstPod.click();
+	    try{
+	       driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+	    }catch(Exception e)
+	    {
+	    	
+	    }
 	    //WaitUtility.waitForAjax(driver);
 	     makeSureItIsPlaying();
 	    
@@ -195,7 +199,12 @@ public class PodcastsPage  extends Page{
 		
 		
 	    firstPod.click();
-	    
+	    try{
+		       driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+	    }catch(Exception e)
+	    {
+	    	
+	    }
 	    makeSureItIsPlaying();
 		
 		checkSkipLimitless();
@@ -209,6 +218,12 @@ public class PodcastsPage  extends Page{
 		comeToThisPage_direct();
 		
 	    firstPod.click();
+	    try{
+	       driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
+	    }catch(Exception e)
+	    {
+	    	
+	    }
 		//driver.findElement(By.cssSelector("li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
 		makeSureItIsPlaying();
 	   

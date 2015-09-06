@@ -351,13 +351,24 @@ public class HomePage extends Page {
 	
 	public void WEB_11736_signUp()
 	{   WaitUtility.sleep(3000);
-        try{	
-		   loginButton.click();
-        }catch(Exception e) 
+		int count = 0;
+		boolean clickAgain = true;
+        do
         {
-        	WaitUtility.sleep(2000);
-        	driver.findElement(By.cssSelector(".icon-account")).click();
-        }
+        	try{
+			   //loginButton.click();
+			  driver.findElement(By.cssSelector(".icon-account")).click();
+			  WaitUtility.sleep(1000);
+			  clickAgain  = false;
+	        }catch(Exception e) 
+	        {
+	            clickAgain = true; 	
+	        }	
+            count++;
+            
+        	
+	     } while (count < 3 && clickAgain)	;
+	        	        
 		WaitUtility.sleep(1000);
 		signUpLink.click();
 		signUp();

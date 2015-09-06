@@ -152,17 +152,7 @@ public class CustomRadioPage  extends Page {
 			comeToThisPage_direct();
 		
 			firstArtist.click();
-	
-			/*
-			customFavorite.click();
-			WaitUtility.sleep(1000);
-			
-			String _growls = growls.getText();
-			System.out.println("See growls:" + _growls);
-		
-			if (!_growls.contains("Favorite"))
-			   handleError("Add to Favorite failed.", "WEB_11764_addCustomStationToFavorite");
-			*/
+			//clickOnTopPlayButton();
 			
 			doFavorite("WEB_11764_addCustomStationToFavorite");
 			
@@ -189,6 +179,7 @@ public class CustomRadioPage  extends Page {
 			podcasts.click();
 			
 			driver.findElement(By.cssSelector("ul.station-tiles:nth-child(3) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
+			clickOnTopPlayButton();
 			makeSureItIsPlaying();
 			
 			if (!isSoftGateShow())
@@ -223,12 +214,7 @@ public class CustomRadioPage  extends Page {
 			comeToThisPage_direct();
 			customFirstLinkPlayButton.click();
 			//Sometimes the above play button didn't get clicked . 
-			try{
-			     driver.findElement(By.cssSelector("button.idle:nth-child(1)")).click();
-			}catch(Exception e)
-			{
-				System.out.println("Custom radio is playing fine.");
-			}
+			clickOnTopPlayButton();
 			
 			
 			makeSureItIsPlaying();
