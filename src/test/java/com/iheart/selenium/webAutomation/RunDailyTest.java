@@ -176,7 +176,7 @@ public class RunDailyTest {
 	     
 	     @Test
 	     public void testWEB_11752_thumbUpLiveRadio() throws Exception
-	     {   
+	     {   System.out.println("Using new code...."  );
 	         System.out.println("test method:" +  name.getMethodName() );
 	         try
 	        {

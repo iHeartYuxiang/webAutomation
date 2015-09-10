@@ -244,6 +244,7 @@ public abstract class Page {
 	//thumbUp
 	@FindBy(css="button.medium:nth-child(2)") protected WebElement thumbUp_button;
 	
+	
 	@FindBy(css=".icon-thumb-up-unfilled") protected WebElement thumbUp;
 	@FindBy(css=".icon-thumb-up-filled") protected WebElement thumbUpDone;
 	 
@@ -710,12 +711,22 @@ public abstract class Page {
 	    WaitUtility.sleep(1000);
 		//Sometimes the thumbUp button is disabled, keep scan(At most 10 times though to avoid hang) until thumbUpiCON is enabled.
 		int count = 0; 
-		while(!thumbUp_button.isEnabled() && count < 3)
+		//while(!thumbUp_button.isEnabled() && count < 3)
+		
+		
+		
+		//Try a little bit more
+		while(isThumbUpDisabled() && count < 3)
 		{	System.out.println("thumbUp button is disabled. Scan now..");
 			icon_scan.click();
 			count++;
 			WaitUtility.sleep(2000);
 		}
+		
+		//if it is still disabled, return 
+		if(isThumbUpDisabled()) return;
+				
+		
 		//If this is thumbUp before, double-click
 		try{
 			if (thumbUpDone.isDisplayed())
@@ -744,6 +755,21 @@ public abstract class Page {
 		System.out.println("See growls:" + response);
 		if (!(response.contains("Glad you like") || response.contains("Thanks for your feedback")))
 			handleError("Thump Up is not working properly.", methodName);
+	}
+	
+	private boolean isThumbUpDisabled()
+	{
+		boolean isDisabled = false;
+		try{
+		   System.out.println("Is thumpUp disabled:" + thumbUp_button.getAttribute("disabled") );
+		   
+		   isDisabled = thumbUp_button.getAttribute("disabled").equals("true");
+		   
+		}catch(Exception e)
+		{
+			
+		}
+		return isDisabled;
 	}
 	
 	public void doFavorite(String methodName)
