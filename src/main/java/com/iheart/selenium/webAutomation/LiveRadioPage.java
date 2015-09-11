@@ -393,37 +393,14 @@ public class LiveRadioPage extends Page {
 	
 	public void WEB_11754_thumpDown()
 	{   login();
-		//gotoExplorerOption(option_liveRadio, "Live");
+		
 		comeToThisPage_direct();
 		firstLive.click();
 		WaitUtility.sleep(1000);
 		makeSureItIsPlaying();
 		
+		doThumbDown("WEB_11754_thumpDown");
 		
-		
-		//Keep scan if the thumbDown icon is disabled
-		
-		int count = 0;
-		while (!thumbDown.isEnabled() && count <3)
-		{	
-			icon_scan.click();
-			count++;
-			WaitUtility.sleep(2000);
-		}
-		
-		try{
-		    thumbDown.click();
-		} catch(Exception e)
-		{
-			System.out.println("Hit the commercial time. return now.");
-			return;
-		}
-		WaitUtility.sleep(200);
-		//String hint = growls.getText();
-		String response = driver.findElement(By.className("growls")).getText();
-		System.out.println("See growls:" + response);
-		//if (!response.contains("Thanks for your feedback"))
-		//	handleError("Thump Down is not working properly.", "WEB_11754_thumpDown");
 	}
 	
 	public void WEB_11747_adjustVolume()

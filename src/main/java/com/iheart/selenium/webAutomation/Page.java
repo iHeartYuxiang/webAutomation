@@ -249,7 +249,8 @@ public abstract class Page {
 	@FindBy(css=".icon-thumb-up-filled") protected WebElement thumbUpDone;
 	 
     @FindBy(css="button.medium:nth-child(1)") protected WebElement thumbDown;
-
+    @FindBy(css=".icon-thumb-down-filled") protected WebElement thumbDownDone;
+	
 
 	//Add to favorite
 	@FindBy(css=".favorite") protected WebElement favorite;
@@ -711,9 +712,6 @@ public abstract class Page {
 	    WaitUtility.sleep(1000);
 		//Sometimes the thumbUp button is disabled, keep scan(At most 10 times though to avoid hang) until thumbUpiCON is enabled.
 		int count = 0; 
-		//while(!thumbUp_button.isEnabled() && count < 3)
-		
-		
 		
 		//Try a little bit more
 		while(isThumbUpDisabled() && count < 3)
@@ -759,11 +757,84 @@ public abstract class Page {
 	
 	private boolean isThumbUpDisabled()
 	{
+		
 		boolean isDisabled = false;
 		try{
-		   System.out.println("Is thumpUp disabled:" + thumbUp_button.getAttribute("disabled") );
+			//System.out.println("Is thumpUp html:" + thumbUp_button.getAttribute("innerHTML") );
+			String outerHTML = thumbUp_button.getAttribute("outerHTML");
+			
+			System.out.println("Is thumpUp outerhtml:" + outerHTML );
+			
+			
+			//System.out.println("Is thumpUp disabled:" + thumbUp_button.getAttribute("disabled") );
 		   
-		   isDisabled = thumbUp_button.getAttribute("disabled").equals("true");
+		   isDisabled = outerHTML.contains("disabled");
+		   
+		}catch(Exception e)
+		{
+			
+		}
+		return isDisabled;
+	}
+	
+	public void doThumbDown(String methodName)
+	{  
+	    WaitUtility.sleep(1000);
+		//Sometimes the thumbDown button is disabled, keep scan(At most 3 times though to avoid hang) until thumbUpiCON is enabled.
+		int count = 0; 
+		
+		//Try a little bit more
+		while(isThumbDownDisabled() && count < 3)
+		{	System.out.println("thumbDown button is disabled. Scan now..");
+			icon_scan.click();
+			count++;
+			WaitUtility.sleep(2000);
+		}
+		
+		//if it is still disabled, return 
+		if(isThumbDownDisabled()) return;
+		
+		//If this is thumbUp before, double-click
+		try{
+			if (thumbDownDone.isDisplayed())
+				thumbDownDone.click(); 
+		}catch(Exception e)
+		{
+			
+		}
+		try{
+		   thumbDown.click();
+		} catch(Exception e)
+		{
+			System.out.println("Hit the commercial time. return now.");
+			return;
+		}
+		
+		WaitUtility.sleep(500);
+		
+		//check to make sure that thumpUp Icon is filled
+		
+	    if (!thumbDownDone.isDisplayed())
+			handleError("Favorite icon is not highlighted.", methodName);
+		
+		
+		String response = driver.findElement(By.className("growls")).getText();
+		System.out.println("See growls:" + response);
+		if (! response.contains("Thanks for your feedback"))
+			handleError("Thump Down is not working properly.", methodName);
+	}
+	
+	public boolean isThumbDownDisabled()
+	{
+		boolean isDisabled = false;
+		try{
+		   
+		   String outerHTML = thumbDown.getAttribute("outerHTML");
+			
+			System.out.println("Is thumpDown outerhtml:" + outerHTML );
+			
+		   
+		   isDisabled = outerHTML.contains("disabled");
 		   
 		}catch(Exception e)
 		{
