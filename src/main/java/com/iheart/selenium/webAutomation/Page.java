@@ -726,12 +726,20 @@ public abstract class Page {
 				
 		
 		//If this is thumbUp before, double-click
+		/*
 		try{
 			if (thumbUpDone.isDisplayed())
 				thumbUpDone.click(); 
 		}catch(Exception e)
 		{
 			
+		}
+		*/
+		
+		//If this is thumbUp before, double-click
+		if (isThumbUpDone())
+		{	thumbUp.click();
+		    WaitUtility.sleep(1500);
 		}
 		try{
 		   thumbUp.click();
@@ -745,7 +753,8 @@ public abstract class Page {
 		
 		//check to make sure that thumpUp Icon is filled
 		
-	    if (!thumbUpDone.isDisplayed())
+	    //if (!thumbUpDone.isDisplayed())
+		if (!isThumbUpDone())
 			handleError("Favorite icon is not highlighted.", methodName);
 		
 		
@@ -754,6 +763,44 @@ public abstract class Page {
 		if (!(response.contains("Glad you like") || response.contains("Thanks for your feedback")))
 			handleError("Thump Up is not working properly.", methodName);
 	}
+	
+	private boolean isThumbUpDone()
+	{
+		
+		boolean isDone = false;
+		try{
+			String innerHTML = thumbUp_button.getAttribute("innerHTML");
+			
+			System.out.println("Is thumpUp done? see innerhtml:" + innerHTML );
+			  
+		   isDone = innerHTML.contains("-filled");
+		   
+		}catch(Exception e)
+		{
+			
+		}
+		return isDone;
+	}
+	
+	
+	private boolean isThumbDownDone()
+	{
+		
+		boolean isDone = false;
+		try{
+			String innerHTML = thumbDown.getAttribute("innerHTML");
+			
+			System.out.println("Is thumpDown done? see innerhtml:" + innerHTML );
+			  
+		   isDone = innerHTML.contains("-filled");
+		   
+		}catch(Exception e)
+		{
+			
+		}
+		return isDone;
+	}
+	
 	
 	private boolean isThumbUpDisabled()
 	{
@@ -795,12 +842,19 @@ public abstract class Page {
 		if(isThumbDownDisabled()) return;
 		
 		//If this is thumbUp before, double-click
+		/*
 		try{
 			if (thumbDownDone.isDisplayed())
 				thumbDownDone.click(); 
 		}catch(Exception e)
 		{
 			
+		}
+		*/
+		
+		if (isThumbDownDone())
+		{	thumbDown.click(); 
+		    WaitUtility.sleep(1500);
 		}
 		try{
 		   thumbDown.click();
@@ -814,7 +868,8 @@ public abstract class Page {
 		
 		//check to make sure that thumpUp Icon is filled
 		
-	    if (!thumbDownDone.isDisplayed())
+	 //  if (!thumbDownDone.isDisplayed())
+		if (!isThumbDownDone())
 			handleError("Favorite icon is not highlighted.", methodName);
 		
 		
