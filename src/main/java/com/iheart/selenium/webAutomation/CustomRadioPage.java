@@ -130,18 +130,7 @@ public class CustomRadioPage  extends Page {
 			System.out.println("It is playing:" + songPlaying);
 			
 			doThumbUp("WEB_11763_thumpUpCustom");
-			//doSkip();
 			
-			/*
-			icon_skip.click();
-			WaitUtility.sleep(2000);
-			
-			String nextSong = driver.findElement(By.cssSelector("#player > div.player-left > div.player-info > a.player-artist.type-secondary.type-xsmall")).getText();
-			System.out.println("After skip:" + nextSong);
-			
-			if (nextSong.equalsIgnoreCase(songPlaying))
-				handleError("skip button is not working for custom radio.", "WEB_11763_thumpUpCustom");
-			*/
 			
 		}
 		

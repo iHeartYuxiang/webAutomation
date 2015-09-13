@@ -725,16 +725,7 @@ public abstract class Page {
 		if(isThumbUpDisabled()) return;
 				
 		
-		//If this is thumbUp before, double-click
-		/*
-		try{
-			if (thumbUpDone.isDisplayed())
-				thumbUpDone.click(); 
-		}catch(Exception e)
-		{
-			
-		}
-		*/
+		
 		
 		//If this is thumbUp before, double-click
 		if (isThumbUpDone())
@@ -753,10 +744,10 @@ public abstract class Page {
 		
 		//check to make sure that thumpUp Icon is filled
 		
-	    //if (!thumbUpDone.isDisplayed())
+	    /*
 		if (!isThumbUpDone())
 			handleError("Favorite icon is not highlighted.", methodName);
-		
+		*/
 		
 		String response = driver.findElement(By.className("growls")).getText();
 		System.out.println("See growls:" + response);
@@ -842,15 +833,7 @@ public abstract class Page {
 		if(isThumbDownDisabled()) return;
 		
 		//If this is thumbUp before, double-click
-		/*
-		try{
-			if (thumbDownDone.isDisplayed())
-				thumbDownDone.click(); 
-		}catch(Exception e)
-		{
-			
-		}
-		*/
+		
 		
 		if (isThumbDownDone())
 		{	thumbDown.click(); 
@@ -868,10 +851,10 @@ public abstract class Page {
 		
 		//check to make sure that thumpUp Icon is filled
 		
-	 //  if (!thumbDownDone.isDisplayed())
+	   /*
 		if (!isThumbDownDone())
 			handleError("Favorite icon is not highlighted.", methodName);
-		
+		*/
 		
 		String response = driver.findElement(By.className("growls")).getText();
 		System.out.println("See growls:" + response);
