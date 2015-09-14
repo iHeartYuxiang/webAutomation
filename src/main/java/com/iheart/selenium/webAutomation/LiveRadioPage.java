@@ -50,7 +50,7 @@ public class LiveRadioPage extends Page {
 		
 		//International
 		@FindBy(css="#main > div > section > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i") public WebElement firstINT;
-		@FindBy(css="#hero > div.hero-content > div > div.profile-info > div > button > i") public WebElement firstINT_playButton;
+		//@FindBy(css="#hero > div.hero-content > div > div.profile-info > div > button > i") public WebElement firstINT_playButton;
 		@FindBy(css="#player > div.player-center > div > button.playing.btn-circle.medium.play > i") public WebElement firstINT_stopPlayButton;
 		
 		//autoPlay
@@ -320,10 +320,12 @@ public class LiveRadioPage extends Page {
 		
 	
 		
-		firstINT.click();
-		WaitUtility.sleep(500);
-		firstINT_playButton.click();
-		WaitUtility.sleep(500);
+		//firstINT.click();
+	//	firstINT_playButton.click();
+		driver.findElement(By.cssSelector("#main > div.directory-live > section > ul > li:nth-child(2) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i")).click();
+		makeSureItIsPlaying();
+		//gIVE pre-roll additional time
+		WaitUtility.sleep(10*1000);
 		
 		//Verify that it is indeed playing
 		if (!firstINT_stopPlayButton.getAttribute("class").equalsIgnoreCase("icon-stop"))
@@ -358,7 +360,13 @@ public class LiveRadioPage extends Page {
 		
 		makeSureItIsPlaying();
 		
-		icon_stop.click();
+		try {
+		 icon_stop.click();
+		}catch(Exception e)
+		{
+			WaitUtility.sleep (20*1000);
+			icon_stop.click();
+		}
 		
 		icon_play.click();
 		//here, get the song that is playing
@@ -446,7 +454,11 @@ public class LiveRadioPage extends Page {
 		gotoGenrePage_direct();
 		
 		//click on country genre
-		driver.findElement(By.cssSelector("section.section-block:nth-child(7) > h3:nth-child(1) > a:nth-child(1) > span:nth-child(1)")).click();
+		if (Page.getBrowser().equals("chrome"))
+		{	scrollDown();
+		    driver.findElement(By.cssSelector("#main > div.directory-genre > section:nth-child(7) > h3 > a > span:nth-child(1)")).click();
+		}else								
+		    driver.findElement(By.cssSelector("section.section-block:nth-child(7) > h3:nth-child(1) > a:nth-child(1) > span:nth-child(1)")).click();
 		
 		//play top country station
 		driver.findElement(By.cssSelector("#main > div:nth-child(2) > div:nth-child(1) > section:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();

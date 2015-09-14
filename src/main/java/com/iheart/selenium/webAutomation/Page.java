@@ -22,6 +22,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.JavascriptExecutor;
 
 
 public abstract class Page {
@@ -585,8 +586,8 @@ public abstract class Page {
 	//to be done
 	public void handlePreRoll()
 	{   
-		// WaitUtility.sleep(35000);
-		WaitUtility.sleep(45000);
+		 WaitUtility.sleep(35000);
+		//WaitUtility.sleep(45000);
 	}
 	
 	public void handlePreRoll_obsolete()
@@ -1062,5 +1063,12 @@ public abstract class Page {
 		    {
 		    	
 		    }
+	}
+	
+	
+	public void scrollDown()
+	{
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("window.scrollBy(0,250)", "");
 	}
 }
