@@ -343,7 +343,8 @@ public class HomePage extends Page {
 		//WaitUtility.waitForAjax(driver);
 		playButton.click();
 		makeSureItIsPlaying();
-	    
+	    //Wait for additional time for signup page to show
+		WaitUtility.sleep(10000);
 		signUp();
 	   
 	}

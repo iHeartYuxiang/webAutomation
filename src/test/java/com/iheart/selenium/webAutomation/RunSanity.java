@@ -27,8 +27,8 @@ public class RunSanity {
 		
 		
 		
-	    String browser = "firefox";
-		//String browser = "chrome";
+	    //String browser = "firefox";
+		String browser = "chrome";
 		   
 		static String userCity = "";
 		

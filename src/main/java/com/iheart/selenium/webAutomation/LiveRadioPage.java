@@ -93,26 +93,15 @@ public class LiveRadioPage extends Page {
     
     public void WEB_11753_favStationAndListenHistoryOnPlayer()
     {
-    	//for users not sign in
-    	//gotoExplorerOption(option_liveRadio, "Live");
+    	
     	comeToThisPage_direct();
 		firstLive.click();
 		
 		
-		/*
-		try{
-		    icon_play.isDisplayed();
-		    System.out.println("Music is not playing. About to click.");
-			icon_play.click();
-
-	    }catch(Exception e)
-
-	    {   System.out.println("Music is playing. ");
-	    	return;
-	    }
-		*/
 		makeSureItIsPlaying();
 		
+		//Some times it takes more than 35 seconds
+		WaitUtility.sleep(10000);
 		//Click on Add to Favorite link
 		
 		addToFavoriteFromPlayer();
@@ -125,6 +114,9 @@ public class LiveRadioPage extends Page {
 		// For logged in user
 		faceBookSignUp();
 		handlePreRoll();
+		
+		//Some times it takes more than 35 seconds
+		WaitUtility.sleep(10000);
 		
 		String player_station = playerStation.getText();
 		
@@ -191,8 +183,9 @@ public class LiveRadioPage extends Page {
 		login();
 		search("Elvis Duran");
 		firstSearchResult.click();
-	
-		WaitUtility.sleep(1000);
+		
+	  //wait for pre-roll;
+		WaitUtility.sleep(35 * 1000);
 		
 		shareFromPlayer();
 		//Verify that we are on share page now
@@ -201,6 +194,8 @@ public class LiveRadioPage extends Page {
 		
 		if (!sharePageTitle.getText().trim().equals("Share"))
 			handleError("Share button is not working.", "WEB_11757_liveShare");
+		
+		WaitUtility.sleep(2000);
 		
 		shareOnfaceBook();
 	}    
@@ -220,23 +215,49 @@ public class LiveRadioPage extends Page {
     
     private void addToFavoriteFromPlayer()
     {
-    	
-    	//icon_more_horizontal.click();
-    	driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
-    	//driver.findElement(By.cssSelector(".now-playing-options > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
-    	driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
-    }
+    	if (Page.getBrowser().equals("chrome"))
+    	{
+    		try{
+    		   driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button")).click();
+    		}catch(Exception e)
+    		{   //Sometimes it takes extra long time for preroll to complete
+    			WaitUtility.sleep(8*1000);
+    			driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button")).click();
+    		}
+    		WaitUtility.sleep(1000);
+    	    driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(1) > a")).click();
+    	}else
+    	{
+    		driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
+    		//driver.findElement(By.cssSelector(".now-playing-options > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
+    		driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
+    
+    	}
+    }	
     
     private void shareFromPlayer()
     {
     	
-    	//icon_more_horizontal.click();
-    	//driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
-    	//driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)")).click();
+    	WebElement we;
     	Actions action = new Actions(driver);
-    	WebElement we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
-    	action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
-
+    	if (Page.getBrowser().equals("chrome"))
+    	{
+    		//we = driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i"));
+    		WaitUtility.sleep(200);
+        	
+    		//action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a"))).click().build().perform();
+    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i")).click();
+    		 WaitUtility.sleep(800);
+    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a")).click();
+    		   
+    		 
+    	}else 
+    	{ 
+    		we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
+    	    action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
+    	}
+    	
+    	WaitUtility.sleep(2000);
     	
     	
     }
@@ -255,7 +276,7 @@ public class LiveRadioPage extends Page {
 	
 	public void WEB_11744_filterStation()
 	{   
-		//gotoExplorerOption(option_liveRadio, "Live");
+		
 	    comeToThisPage_direct();
 		
 		filterStation();
