@@ -50,7 +50,7 @@ public class LiveRadioPage extends Page {
 		
 		//International
 		@FindBy(css="#main > div > section > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i") public WebElement firstINT;
-		@FindBy(css="#hero > div.hero-content > div > div.profile-info > div > button > i") public WebElement firstINT_playButton;
+		//@FindBy(css="#hero > div.hero-content > div > div.profile-info > div > button > i") public WebElement firstINT_playButton;
 		@FindBy(css="#player > div.player-center > div > button.playing.btn-circle.medium.play > i") public WebElement firstINT_stopPlayButton;
 		
 		//autoPlay
@@ -93,26 +93,15 @@ public class LiveRadioPage extends Page {
     
     public void WEB_11753_favStationAndListenHistoryOnPlayer()
     {
-    	//for users not sign in
-    	//gotoExplorerOption(option_liveRadio, "Live");
+    	
     	comeToThisPage_direct();
 		firstLive.click();
 		
 		
-		/*
-		try{
-		    icon_play.isDisplayed();
-		    System.out.println("Music is not playing. About to click.");
-			icon_play.click();
-
-	    }catch(Exception e)
-
-	    {   System.out.println("Music is playing. ");
-	    	return;
-	    }
-		*/
 		makeSureItIsPlaying();
 		
+		//Some times it takes more than 35 seconds
+		WaitUtility.sleep(10000);
 		//Click on Add to Favorite link
 		
 		addToFavoriteFromPlayer();
@@ -125,6 +114,9 @@ public class LiveRadioPage extends Page {
 		// For logged in user
 		faceBookSignUp();
 		handlePreRoll();
+		
+		//Some times it takes more than 35 seconds
+		WaitUtility.sleep(10000);
 		
 		String player_station = playerStation.getText();
 		
@@ -191,8 +183,9 @@ public class LiveRadioPage extends Page {
 		login();
 		search("Elvis Duran");
 		firstSearchResult.click();
-	
-		WaitUtility.sleep(1000);
+		
+	  //wait for pre-roll;
+		WaitUtility.sleep(35 * 1000);
 		
 		shareFromPlayer();
 		//Verify that we are on share page now
@@ -201,6 +194,8 @@ public class LiveRadioPage extends Page {
 		
 		if (!sharePageTitle.getText().trim().equals("Share"))
 			handleError("Share button is not working.", "WEB_11757_liveShare");
+		
+		WaitUtility.sleep(2000);
 		
 		shareOnfaceBook();
 	}    
@@ -220,23 +215,49 @@ public class LiveRadioPage extends Page {
     
     private void addToFavoriteFromPlayer()
     {
-    	
-    	//icon_more_horizontal.click();
-    	driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
-    	//driver.findElement(By.cssSelector(".now-playing-options > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
-    	driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
-    }
+    	if (Page.getBrowser().equals("chrome"))
+    	{
+    		try{
+    		   driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button")).click();
+    		}catch(Exception e)
+    		{   //Sometimes it takes extra long time for preroll to complete
+    			WaitUtility.sleep(8*1000);
+    			driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button")).click();
+    		}
+    		WaitUtility.sleep(200);
+    	    driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(1) > a")).click();
+    	}else
+    	{
+    		driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
+    		//driver.findElement(By.cssSelector(".now-playing-options > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
+    		driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")).click();
+    
+    	}
+    }	
     
     private void shareFromPlayer()
     {
     	
-    	//icon_more_horizontal.click();
-    	//driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)")).click();
-    	//driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)")).click();
+    	WebElement we;
     	Actions action = new Actions(driver);
-    	WebElement we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
-    	action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
-
+    	if (Page.getBrowser().equals("chrome"))
+    	{
+    		//we = driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i"));
+    		WaitUtility.sleep(200);
+        	
+    		//action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a"))).click().build().perform();
+    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i")).click();
+    		 WaitUtility.sleep(800);
+    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a")).click();
+    		   
+    		 
+    	}else 
+    	{ 
+    		we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
+    	    action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
+    	}
+    	
+    	WaitUtility.sleep(2000);
     	
     	
     }
@@ -255,7 +276,7 @@ public class LiveRadioPage extends Page {
 	
 	public void WEB_11744_filterStation()
 	{   
-		//gotoExplorerOption(option_liveRadio, "Live");
+		
 	    comeToThisPage_direct();
 		
 		filterStation();
@@ -299,10 +320,12 @@ public class LiveRadioPage extends Page {
 		
 	
 		
-		firstINT.click();
-		WaitUtility.sleep(500);
-		firstINT_playButton.click();
-		WaitUtility.sleep(500);
+		//firstINT.click();
+	//	firstINT_playButton.click();
+		driver.findElement(By.cssSelector("#main > div.directory-live > section > ul > li:nth-child(2) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i")).click();
+		makeSureItIsPlaying();
+		//gIVE pre-roll additional time
+		WaitUtility.sleep(10*1000);
 		
 		//Verify that it is indeed playing
 		if (!firstINT_stopPlayButton.getAttribute("class").equalsIgnoreCase("icon-stop"))
@@ -337,7 +360,13 @@ public class LiveRadioPage extends Page {
 		
 		makeSureItIsPlaying();
 		
-		icon_stop.click();
+		try {
+		 icon_stop.click();
+		}catch(Exception e)
+		{
+			WaitUtility.sleep (20*1000);
+			icon_stop.click();
+		}
 		
 		icon_play.click();
 		//here, get the song that is playing
@@ -399,6 +428,15 @@ public class LiveRadioPage extends Page {
 		WaitUtility.sleep(1000);
 		makeSureItIsPlaying();
 		
+		//Sometimes it takes extra long time for pre-roll to complete
+		try{
+			icon_scan.getText();
+		}catch(Exception e)
+		{
+			WaitUtility.sleep(10*1000);
+			
+		}
+		
 		doThumbDown("WEB_11754_thumpDown");
 		
 	}
@@ -425,7 +463,11 @@ public class LiveRadioPage extends Page {
 		gotoGenrePage_direct();
 		
 		//click on country genre
-		driver.findElement(By.cssSelector("section.section-block:nth-child(7) > h3:nth-child(1) > a:nth-child(1) > span:nth-child(1)")).click();
+		if (Page.getBrowser().equals("chrome"))
+		{	scrollDown();
+		    driver.findElement(By.cssSelector("#main > div.directory-genre > section:nth-child(7) > h3 > a > span:nth-child(1)")).click();
+		}else								
+		    driver.findElement(By.cssSelector("section.section-block:nth-child(7) > h3:nth-child(1) > a:nth-child(1) > span:nth-child(1)")).click();
 		
 		//play top country station
 		driver.findElement(By.cssSelector("#main > div:nth-child(2) > div:nth-child(1) > section:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
@@ -441,10 +483,16 @@ public class LiveRadioPage extends Page {
 		
 		
 		//top country artist	
-		driver.navigate().back();
-	   // driver.findElement(By.cssSelector("#main > div:nth-child(1) > div:nth-child(1) > section:nth-child(2) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
-		driver.findElement(By.cssSelector("section.section-block:nth-child(3) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
-		//verify: it is not playing & signup page shows up
+		
+        driver.navigate().back();
+      //click on country genre
+  		
+  		scrollDown(350);
+  		WaitUtility.sleep(500);
+  		//click on the first top country artist
+  										
+  		driver.findElement(By.cssSelector("#main > div:nth-child(2) > div > section:nth-child(3) > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i")).click();
+  		//verify: it is not playing & signup page shows up
 		WaitUtility.sleep(500);
 	    if (!icon_play.isDisplayed())  
 	       errors.append("Custom station is playing for unauthorized user.");

@@ -153,6 +153,7 @@ public class PodcastsPage  extends Page{
 		System.out.println("See chosenStation:" + chosenStation);
 	    firstPod.click();
 	    clickOnTopPlayButton();
+	    handlePreRoll();
 	    
 	    doFavorite("WEB_11775_addShowToFavorite");
 	    /*

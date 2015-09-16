@@ -27,8 +27,8 @@ public class RunSanity {
 		
 		
 		
-	    String browser = "firefox";
-		//String browser = "chrome";
+	    //String browser = "firefox";
+		String browser = "chrome";
 		   
 		static String userCity = "";
 		
@@ -882,7 +882,7 @@ public class RunSanity {
 		 public void testWEB_11783_logout() throws Exception
 		 {   
 		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
+		 	try{   
 		    	profilePage.WEB_11783_logout();
 		 	}catch(Exception e)
 		 	{

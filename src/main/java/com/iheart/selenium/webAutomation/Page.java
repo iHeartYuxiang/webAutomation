@@ -22,6 +22,7 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.remote.Augmenter;
+import org.openqa.selenium.JavascriptExecutor;
 
 
 public abstract class Page {
@@ -170,6 +171,7 @@ public abstract class Page {
 	//SignedAccount -> Profile -> Favorite Episode
 	@FindBy(css="li.tabbar:nth-child(6) > a:nth-child(1)") private WebElement favoriteEpisodes;
 		
+	@FindBy(css="#hero > div.hero-content > div > div.profile-info > div > ul > li.station-name > button > i")  public WebElement   top_favorite_icon ;
 	@FindBy(css=".icon-favorite-filled")  public WebElement   icon_favorite_filled ;
 	@FindBy(css=".icon-favorite-unfilled")  public WebElement   icon_favorite_unfilled ;
     
@@ -222,6 +224,8 @@ public abstract class Page {
 	
 	@FindBy(css=".icon-play") public WebElement icon_play;
     @FindBy(css="button.idle:nth-child(3)")  public WebElement icon_play_inPlayer;
+    
+    @FindBy(css="#player > div.player-center > div > button.playing.btn-circle.medium.play > i") public WebElement icon_stop_in_player;
    
 	@FindBy(css=".icon-stop") public WebElement icon_stop;
 	@FindBy(css=".icon-pause") public WebElement icon_pause;
@@ -583,6 +587,7 @@ public abstract class Page {
 	public void handlePreRoll()
 	{   
 		 WaitUtility.sleep(35000);
+		//WaitUtility.sleep(45000);
 	}
 	
 	public void handlePreRoll_obsolete()
@@ -621,7 +626,7 @@ public abstract class Page {
 	}
 	
 	//to by-pass the pre-roll
-	public void makeSureItIsNotPlaying()
+	public void makeSureItIsNotPlaying_old()
 	{   boolean isPlaying = true;
 
 	    try{
@@ -640,9 +645,31 @@ public abstract class Page {
 	    	WaitUtility.sleep(35000);
 
 	    	return;
+	    	
 
 	    }
 	}
+	
+	
+	//to by-pass the pre-roll
+		public void makeSureItIsNotPlaying()
+		{   boolean isPlaying = false;
+
+		    try{
+		    	icon_stop_in_player.getAttribute("class");
+                System.out.println("Is playing.. click to stop.");
+                isPlaying = true;
+		    }catch(Exception e)
+		    {  
+		    	isPlaying = false;
+
+		    }
+		    
+		    if (isPlaying)
+		    	icon_stop_in_player.click();
+		    WaitUtility.sleep(1000);
+		}
+	
 	
 	public static String getBrowser()
 	{
@@ -716,7 +743,13 @@ public abstract class Page {
 		//Try a little bit more
 		while(isThumbUpDisabled() && count < 3)
 		{	System.out.println("thumbUp button is disabled. Scan now..");
-			icon_scan.click();
+		    try{
+			   icon_scan.click();
+		    }catch(Exception e)
+		    {   //Sometimes it takes extra long time for the preroll to finish
+		    	WaitUtility.sleep(8000);
+		    	 icon_scan.click();
+		    }
 			count++;
 			WaitUtility.sleep(2000);
 		}
@@ -881,15 +914,64 @@ public abstract class Page {
 		return isDisabled;
 	}
 	
+	
 	public void doFavorite(String methodName)
 	{
 		 //If the chosen show/song is faved before, double click; 
+		boolean isFavoredAlready = false;
+		System.out.println("See class:" + top_favorite_icon.getAttribute("class"));
+		if ((top_favorite_icon.getAttribute("class")).contains("-filled"))
+			isFavoredAlready = true;
+		
+	    if (isFavoredAlready)
+	    {  
+	    	try{
+	        	top_favorite_icon.click();
+	    	}catch(Exception e)
+	    	{      //Wait for pre-roll to complete
+	    		   WaitUtility.sleep(10*1000);
+	    		   top_favorite_icon.click();
+	    	}
+	       WaitUtility.sleep(1000);
+		 
+	    }
+	    
+	    
+	   top_favorite_icon.click();
+		WaitUtility.sleep(500);
+	   System.out.println("See class again:" + top_favorite_icon.getAttribute("class"));
+	   if (top_favorite_icon.getAttribute("class").contains("-unfilled"))
+	   {
+		   handleError("Favorite icon is not highlighted.", methodName);
+	   }
+		
+	   //Check that growls show up
+	   String _growls = growls.getText();
+		System.out.println("See growls:" + _growls);
+	
+		if (!_growls.contains("Favorite"))
+		   handleError("Add to Favorite failed.", methodName);
+	   
+	}
+	
+	public void doFavorite_OLD(String methodName)
+	{
+		 //If the chosen show/song is faved before, double click; 
+		boolean isFavoredAlready = false;
 	    try{
-		   if (icon_favorite_filled.isDisplayed())
+		   icon_favorite_filled.getAttribute("class");
+		   isFavoredAlready = true;
+	    }catch(Exception e)
+	    {
+	    	
+	    }
+		
+	    try{
+		   if (isFavoredAlready)
 		   {  
 			   icon_favorite_filled.click();
 		       WaitUtility.sleep(1000);
-			  // WaitUtility.waitForAjax(driver);
+			 
 		   }
 	    }catch(Exception e)
 	    {
@@ -923,8 +1005,16 @@ public abstract class Page {
 	       System.out.println(signupHint.getText());
 	    }catch(Exception e)
 	    {  e.printStackTrace();
-	       System.out.println("Soft gate is not shown.");
-	       return false;
+	       System.out.println("Soft gate is not shown. Give it more time");
+	       WaitUtility.sleep(10*1000);
+	       try{
+	    	   System.out.println(signupHint.getText());
+	    	   
+	       }catch(Exception ex)
+	       {
+	    	   return false;
+	       }
+	       
 	    		   
 	    }
 		//return signupHint.getText().contains("Have an account?");
@@ -1025,5 +1115,20 @@ public abstract class Page {
 		    {
 		    	
 		    }
+	}
+	
+	
+	public void scrollDown()
+	{
+		scrollDown(250);
+	}
+	
+	
+	public void scrollDown(int offset)
+	{
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		String script = "window.scrollBy(0," + offset + ")";
+		//jse.executeScript("window.scrollBy(0,_offset)", "");
+		jse.executeScript(script, "");
 	}
 }

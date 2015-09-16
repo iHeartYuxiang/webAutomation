@@ -142,7 +142,7 @@ public class PerfectForPage extends Page{
 		comeToThisPage_direct();
 		new Select(activity).selectByIndex(2);
 		
-		//WaitUtility.waitForAjax(driver);
+		WaitUtility.sleep(1000);
 		
 		//Need to remember this station name
 		String chosenStation = firstBoxTitle.getText();
@@ -154,8 +154,13 @@ public class PerfectForPage extends Page{
 		//if (!icon_pause.getAttribute("class").equals("icon-pause"))
 	    if (!icon_stop.getAttribute("class").equals("icon-stop"))
 			handleError("Player is not playing.", "WEB_11767_filterAfterLogin");
-	    
-		myStations.click();
+	    try{
+		   myStations.click();
+	    }catch(Exception e)
+	    {   //Wait further for pre-roll to finish
+	    	WaitUtility.sleep(20000);
+	    	 myStations.click();
+	    }
 		if (!driver.getPageSource().contains(chosenStation))
 			handleError("The chosen station is not added to my stations.", "WEB_11767_filterAfterLogin");
 		listenHistory.click();

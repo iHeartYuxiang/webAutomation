@@ -30,7 +30,7 @@ public class HomePage extends Page {
 	
 	@FindBy(css="li.genre:nth-child(10) > div:nth-child(1) > div:nth-child(3)") public WebElement sport;
 	@FindBy(css="button.idle:nth-child(3)") public WebElement playStation;
-	
+
 	@FindBy(css="button.text:nth-child(1)") public WebElement myStation;
 	@FindBy(css=".section-header")   public WebElement stationHeader;
 	
@@ -110,15 +110,25 @@ public class HomePage extends Page {
 	public void WEB_11734_startUp()
 	{   
 		comedy.click();
-		//WaitUtility.waitForAjax(driver);
-		playStation.click();
+		WaitUtility.sleep(2000);
+	
+		driver.findElement(By.cssSelector(".genre-game-footer > button:nth-child(1)")).click();
+		WaitUtility.sleep(1000);
 		
-		//driver.navigate().refresh();
-		//driver.navigate().back();
-		driver.get("iheart.com");
-		//WaitUtility.waitForAjax(driver);
-		sport.click();
 		playStation.click();
+		//makeSureItIsPlaying();
+		driver.quit();
+		driver = null;
+		driver = Utils.launchBrowser("http://www.iheart.com", Page.getBrowser());
+		//driver.get("http://www.iheart.com");
+		WaitUtility.sleep(2000);
+		//sport.click();
+		driver.findElement(By.cssSelector("#dialog > div > div.dialog.ui-on-grey > div.wrapper > div > div.genres-wrapper.wrapper > ul > li:nth-child(10) > div > div.genre-img")).click();
+		driver.findElement(By.cssSelector(".genre-game-footer > button:nth-child(1)")).click();
+		WaitUtility.sleep(1000);
+		//playStation.click();
+		driver.findElement(By.cssSelector("#player > div.player-center > div > button.idle.btn-circle.medium.play > i")).click();
+		driver.quit();
 	}
 	
 	
@@ -343,7 +353,8 @@ public class HomePage extends Page {
 		//WaitUtility.waitForAjax(driver);
 		playButton.click();
 		makeSureItIsPlaying();
-	    
+	    //Wait for additional time for signup page to show
+		WaitUtility.sleep(10000);
 		signUp();
 	   
 	}
