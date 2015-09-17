@@ -173,8 +173,17 @@ public class PerfectForPage extends Page{
 	
 	private void checkSkipLimit()
 	{
-		for (int i = 0; i < 6; i++)
+		//Sometimes pre-roll takes long time to finish
+		try{
+			icon_skip.getText();
+		}catch(Exception e)
 		{
+			//Give pre-roll more time
+			WaitUtility.sleep(5000);
+		}
+		
+		for (int i = 0; i < 6; i++)
+		{   
 			icon_skip.click();
 			thumpDown.click();
 			WaitUtility.sleep(200);

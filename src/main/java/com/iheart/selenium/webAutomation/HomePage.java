@@ -317,6 +317,7 @@ public class HomePage extends Page {
 	
 	private void verifyLink(WebElement option, String expectedTitle)
 	{    option.click();
+	     WaitUtility.sleep(1800);
 	     String _option =  option.getText() ;
 		 System.out.println("See option/ title: "+ _option +"/"+ driver.getTitle());
 		 if(!driver.getTitle().contains(expectedTitle))

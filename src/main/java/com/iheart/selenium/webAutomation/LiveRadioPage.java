@@ -237,31 +237,41 @@ public class LiveRadioPage extends Page {
     
     private void shareFromPlayer()
     {
-    	
-    	WebElement we;
-    	Actions action = new Actions(driver);
-    	if (Page.getBrowser().equals("chrome"))
-    	{
-    		//we = driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i"));
-    		WaitUtility.sleep(200);
-        	
-    		//action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a"))).click().build().perform();
-    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > button > i")).click();
-    		 WaitUtility.sleep(800);
-    		 driver.findElement(By.cssSelector("#player > div.player-left > div.dropdown-trigger.align-right.align-bottom.now-playing-options.hidden-sm > div > nav > ul > li:nth-child(3) > a")).click();
-    		   
-    		 
-    	}else 
-    	{ 
-    		we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
-    	    action.moveToElement(we).moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
-    	}
-    	
-    	WaitUtility.sleep(2000);
+    	int count = 0;
+		boolean shared = false;
+		WebElement we;
+		Actions action = new Actions(driver);
+		do {
+			we = driver.findElement(By.cssSelector(".align-bottom > button:nth-child(1)"));
+		    action = action.moveToElement(we);
+			WaitUtility.sleep(200);
+			try{
+		    	//action.moveToElement(option_logout).click().build().perform();
+				 action.moveToElement(driver.findElement(By.cssSelector(".align-bottom > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(3) > a:nth-child(1)"))).click().build().perform();
+				 
+			}catch(Exception e)
+			{
+				
+			}
+			
+			WaitUtility.sleep(1000);
+		
+			count++;
+		
+		}while(count <5 && !isShared());	
     	
     	
     }
        
+    private boolean isShared()
+    {
+    	try{
+    		return (driver.findElement(By.cssSelector("#dialog > div > div.dialog.ui-on-grey > div.wrapper > header > h2")).getText()).equals("Share");
+    	}catch(Exception e)
+    	{
+    		return false;
+    	}
+    }
     
     
 	public void WEB_14441_mutePlayer()
@@ -482,23 +492,6 @@ public class LiveRadioPage extends Page {
 			handleError("Sign up page is not showing up. ", "WEB_11785_playStationFromGenreProfile");
 		
 		
-		//top country artist	
-		
-        driver.navigate().back();
-      //click on country genre
-  		
-  		scrollDown(350);
-  		WaitUtility.sleep(500);
-  		//click on the first top country artist
-  										
-  		driver.findElement(By.cssSelector("#main > div:nth-child(2) > div > section:nth-child(3) > ul > li:nth-child(1) > div > div.station-thumb-wrapper.ui-on-dark > a > div.hover > button > i")).click();
-  		//verify: it is not playing & signup page shows up
-		WaitUtility.sleep(500);
-	    if (!icon_play.isDisplayed())  
-	       errors.append("Custom station is playing for unauthorized user.");
-	    
-	    if (!isSoftGateShow())
-			handleError("Sign up page is not showing up. ", "WEB_11785_playStationFromGenreProfile");
 		 
 	}
 	

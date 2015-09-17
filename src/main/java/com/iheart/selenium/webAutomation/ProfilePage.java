@@ -1,6 +1,7 @@
 package com.iheart.selenium.webAutomation;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.By;
@@ -172,8 +173,9 @@ public class ProfilePage extends Page {
 	{
 		login();
 		
-		gotoSingedAccountOption(option_logout,EXPECTED_TITLE_FORYOU);
 		
+		// gotoSingedAccountOption(option_logout,EXPECTED_TITLE_FORYOU);
+		logout();
 		//verfiy that no station is playing
 		try{
 			if( icon_pause.isDisplayed() || icon_stop.isDisplayed()) 
@@ -184,44 +186,52 @@ public class ProfilePage extends Page {
 		}
 		
 		//verify that login link is present
-		try{
-			loginButton.getTagName();
-			System.out.println("Log In button is displayed. Good.");
-		}catch(Exception e)
-		{
+		if (!isLoggedOut())
 			handleError("Log out failed.", "WEB_11783_logout");
-		}
 		
 	}	
 	
-	private void verifyPlayer_OBSOLETE(String category)
-	{   boolean isPlaying = false;
-	    try{
-	    	if (icon_pause.isDisplayed())
-	    	{	isPlaying = true;
-	    		System.out.println("It is  playing. Good" );
-	    	}
-	    }catch(Exception e)
-	    {   
-	    }
-	    
-	    if (!isPlaying)
-	    {	
-		    try{
-		    	if (icon_stop.isDisplayed())
-		    	{	isPlaying = true;
-		    		System.out.println("It is  playing. Good" );
-		    	}
-		    }catch(Exception e)
-		    {   
-		    }
-	    }
-	    
-		if (!isPlaying)
-		    handleError("The " + category + " is not playing.", "verifyPlayer");
+	
+	
+	public void logout()
+	{  // limit try to 5 times
+		int count = 0;
+		boolean isOut = false;
 		
+		Actions action = new Actions(driver);
+		do {
+			
+		    action = action.moveToElement(signedAccount);
+			WaitUtility.sleep(200);
+			try{
+		    	action.moveToElement(option_logout).click().build().perform();
+			}catch(Exception e)
+			{
+				
+			}
+			
+			WaitUtility.sleep(500);
+		
+			count++;
+		
+		}while(count <5 && !isLoggedOut());	
 	}
 	
+	
+	private boolean isLoggedOut()
+	{   
+		boolean isOut = false;
+		try{
+			loginButton.getTagName();
+			System.out.println("User is logged out.");
+			isOut = true;
+			
+		}catch(Exception e)
+		{
+			isOut = false;
+		}
+		return isOut;
+	}
 	
 	public void comeToThisPage()
 	{ /*

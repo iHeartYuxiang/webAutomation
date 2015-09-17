@@ -138,11 +138,10 @@ public abstract class Page {
 	
 	//SignedAccount DROP-DOWN
 	@FindBy(css="div.dropdown-trigger:nth-child(2) > button:nth-child(1)") public WebElement signedAccount;
-	//@FindBy(css="div.dropdown-trigger:nth-child(1) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1)")
-	//    public WebElement signedAccountDropDown;
-	//@FindBy(css="div.dropdown-trigger:nth-child(1) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1)") 
-	  //	public WebElement  signedAcctDropDown;
-	//			 div.dropdown-trigger:nth-child(2) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)
+	
+	@FindBy(css="//*[@id='page-view-container']/div/div[1]/div[2]/div/div[2]/div/button/span")  public WebElement signedAccount_chrome;
+	
+	
 	@FindBy(css="div.dropdown-trigger:nth-child(2) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(1) > a:nth-child(1)")
 		public WebElement option_profile;
 	@FindBy(css="div.dropdown-trigger:nth-child(2) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(2) > a:nth-child(1)")
@@ -156,6 +155,8 @@ public abstract class Page {
 				 
 	@FindBy(css="div.dropdown-trigger:nth-child(2) > div:nth-child(2) > nav:nth-child(2) > ul:nth-child(1) > li:nth-child(6) > a:nth-child(1)")
 	    public WebElement option_logout;
+	
+	@FindBy(css="#page-view-container > div > div.header > div.header-wrapper > div > div.header-right > div > button > span")  public WebElement option_logout_chrome;
 	
     public final static String EXPECTED_TITLE_FORYOU = "Listen to Free Radio Stations";
     public final static String EXPECTED_TITLE_LIVERADIO = "Listen to Top Radio Stations";
@@ -218,6 +219,7 @@ public abstract class Page {
 	//player buttons
 	
 	@FindBy(id="player") public WebElement player;
+	@FindBy(xpath="//*[@id='player']/div[2]/div/button[3]")   public WebElement playButton;
 	@FindBy(css="button.idle:nth-child(3)") public WebElement button_playing;
 	
 	@FindBy(css="button.playing:nth-child(3)") public WebElement button_pause;
@@ -716,9 +718,9 @@ public abstract class Page {
 		
 		Actions action = new Actions(driver);
 		do {
-				
-			action = action.moveToElement(signedAccount);
-			WaitUtility.sleep(500);
+			
+		    action = action.moveToElement(signedAccount);
+			WaitUtility.sleep(200);
 			try{
 		    	action.moveToElement(option).click().build().perform();
 			}catch(Exception e)
@@ -762,8 +764,10 @@ public abstract class Page {
 		
 		//If this is thumbUp before, double-click
 		if (isThumbUpDone())
-		{	thumbUp.click();
-		    WaitUtility.sleep(1500);
+		{	//thumbUp.click();
+		   // WaitUtility.sleep(1500);
+	  		//Here, could be just click on thumbUpButton
+			return;
 		}
 		try{
 		   thumbUp.click();
@@ -869,8 +873,9 @@ public abstract class Page {
 		
 		
 		if (isThumbDownDone())
-		{	thumbDown.click(); 
-		    WaitUtility.sleep(1500);
+		{	//thumbDown.click(); 
+		    //WaitUtility.sleep(1500);
+			return;
 		}
 		try{
 		   thumbDown.click();
@@ -1002,9 +1007,9 @@ public abstract class Page {
 	public boolean isSoftGateShow()
 	{   WaitUtility.sleep(2000);
 	    try{
-	       System.out.println(signupHint.getText());
+	       signupHint.getText();
 	    }catch(Exception e)
-	    {  e.printStackTrace();
+	    { // e.printStackTrace();
 	       System.out.println("Soft gate is not shown. Give it more time");
 	       WaitUtility.sleep(10*1000);
 	       try{
@@ -1028,7 +1033,7 @@ public abstract class Page {
 	}
 	
 	
-	public void verifyPlayer(String category, String testMethod)
+	public void verifyPlayer_old(String category, String testMethod)
 	{   boolean isPlaying = false;
 	    try{
 	    	if (icon_pause.isDisplayed())
@@ -1054,6 +1059,20 @@ public abstract class Page {
 		if (!isPlaying)
 		    handleError("The " + category + " is not playing.", testMethod);
 		
+	}
+	
+	public void verifyPlayer(String category, String testMethod)
+	{   
+	    
+		if (!isPlaying())
+		    handleError("The " + category + " is not playing.", testMethod);
+		
+	}
+	
+	private boolean isPlaying()
+	{
+		String outHTML = playButton.getAttribute("outerHTML");
+		return (!outHTML.contains("icon-play"));
 	}
 	
 	
@@ -1128,7 +1147,36 @@ public abstract class Page {
 	{
 		JavascriptExecutor jse = (JavascriptExecutor)driver;
 		String script = "window.scrollBy(0," + offset + ")";
+		System.out.println("See script:" + script);
 		//jse.executeScript("window.scrollBy(0,_offset)", "");
 		jse.executeScript(script, "");
 	}
+	
+	public void gotoSingedAccountOption_direct(String option)
+	{   String newURL ="";
+		String currentURL = driver.getCurrentUrl();
+		System.out.println("SEE current url:"  + currentURL);
+	    String part1 = currentURL.split("//")[0];
+	    String part2  = currentURL.split("//")[1].split("/")[0];
+	    
+	   if (option.equalsIgnoreCase("Profile"))
+		   newURL = part1 + "//" + part2 + "/my/stations/" ;
+	   else  if (option.equalsIgnoreCase("My Station"))
+		   newURL = part1 + "//" + part2 + "/my/stations/" ;
+	   else  if (option.equalsIgnoreCase("Listen History"))
+		   newURL = part1 + "//" + part2 + "/my/history/" ;
+	   if (option.equalsIgnoreCase("Friends"))
+		   newURL = part1 + "//" + part2 + "/my/friends/" ;
+	   else  if (option.equalsIgnoreCase("Settings"))
+		   newURL = part1 + "//" + part2 + "/my/settings/" ;
+	  
+	   
+	   System.out.println("SEE new url:"  + newURL );
+		
+		driver.get(newURL);
+		WaitUtility.sleep(2000);
+		 
+	}
+	
+	
 }

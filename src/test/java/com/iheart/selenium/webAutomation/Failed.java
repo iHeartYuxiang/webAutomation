@@ -158,9 +158,9 @@ public class Failed {
 		 }
 		 
 		 
-		//Element not found cases
+		 
+		 
 		
-		/*
 		
 		 @Test
 		 public void testWEB_11757_liveShare() throws Exception
@@ -175,70 +175,7 @@ public class Failed {
 		 	System.out.println(name.getMethodName() + " is Done.");
 		 }
 		
-		 
-		 //Element not visible
-		 @Test
-		 public void testWEB_11753_favStationAndListenHistoryOnPlayer() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		liveRadioPage.WEB_11753_favStationAndListenHistoryOnPlayer();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
 		
-		  
-
-		    @Test
-		    public void testWEB_11784_signUp() throws Exception
-		    {
-		    	System.out.println("test method:" +  name.getMethodName() );
-		    	try{
-			    	   homePage.WEB_11784_signUp();
-		    	}catch(Exception e)
-			 	{
-			 		handleException(e);
-			 	} 
-			     System.out.println(name.getMethodName() + " is Done.");
-		    	
-		    }
-		    
-		    
-		    @Test
-			 public void testWEB_11775_addShowToFavorite() throws Exception
-			 {   
-			 	System.out.println("test method:" +  name.getMethodName() );
-			 	try{
-			 		podcastsPage.WEB_11775_addShowToFavorite();
-			 	}catch(Exception e)
-			 	{
-			 		handleException(e);
-			 	}  	
-			 	System.out.println(name.getMethodName() + " is Done.");
-			 }
-		    
-		    
-		    @Test
-			 public void testWEB_11755_favorite() throws Exception
-			 {   
-			 	System.out.println("test method:" +  name.getMethodName() );
-			 	try
-		    	{
-			 	   liveRadioPage.WEB_11755_favorite();
-		    	}catch(Exception e)
-		    	{
-		    		handleException(e);
-		    	}
-			 	System.out.println(name.getMethodName() + " is Done.");
-			 }
-		   
-		    //END OF ELEMENT NOT FOUND.
-		    
-		 */
-		    /*
 		 @Test
 	     public void testWEB_11779_playStations() throws Exception
 	     {   
@@ -252,7 +189,61 @@ public class Failed {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 		
+		 @Test
+		 public void testWEB_11772_browsePodcasts() throws Exception
+		 {   
+		 	System.out.println("test method:" +  name.getMethodName() );
+		 	try{
+		    	podcastsPage.WEB_11772_browsePodcasts();
+		 	}catch(Exception e)
+		 	{
+		 		handleException(e);
+		 	}  	
+		 	System.out.println(name.getMethodName() + " is Done.");
+		 }
+		 
+		 @Test
+		    public void testWEB_11735_explorerMenu() throws Exception
+		    {
+		       
+		    	System.out.println("test method:" +  name.getMethodName() );
+		    	try{
+			    	   homePage.WEB_11735_exploreMenu();
+		    	}catch(Exception e)
+			 	{
+			 		handleException(e);
+			 	} 
+		    	System.out.println(name.getMethodName() + " is Done.");
+		    	
+		    }
+		 
+		 @Test  
+		 public void testWEB_11749_playStationAfterLogin() throws Exception
+		 {   
+		 	System.out.println("test method:" +  name.getMethodName() );
+		 	try{
+		 		liveRadioPage.WEB_11749_playStationAfterLogin();
+		 	}catch(Exception e)
+		 	{
+		 		handleException(e);
+		 	}  	
+		 	System.out.println(name.getMethodName() + " is Done.");
+		 }
 		
+		 
+		 @Test
+		 public void testWEB_11743_playLiveWithoutLogin() throws Exception
+		 {   
+		 	System.out.println("test method:" +  name.getMethodName() );
+		 	try{
+		 		liveRadioPage.WEB_11743_playLiveWithoutLogin();
+		 	}catch(Exception e)
+		 	{
+		 		handleException(e);
+		 	}  	
+		 	System.out.println(name.getMethodName() + " is Done.");
+		 }
+		 
 		
 		 @Test
 	     public void testWEB_11763_thumpUpCustom() throws Exception
@@ -267,154 +258,6 @@ public class Failed {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
-		 
-
-		
-		 @Test
-		 public void testWEB_11779_playStations() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 	   profilePage.WEB_11779_playStations();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 @Test
-		 public void testWEB_11785_playStationFromGenreProfile() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		liveRadioPage.WEB_11785_playStationFromGenreProfile();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 @Test
-		    public void testWEB_11784_signUp() throws Exception
-		    {
-		    	System.out.println("test method:" +  name.getMethodName() );
-		    	try{
-			    	   homePage.WEB_11784_signUp();
-		    	}catch(Exception e)
-			 	{
-			 		handleException(e);
-			 	} 
-			     System.out.println(name.getMethodName() + " is Done.");
-		    	
-		    }
-		 
-		 @Test
-		 public void testWEB_11758_browseCustomBeforeLogin() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 	   customRadioPage.WEB_11758_browseCustomBeforeLogin();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 
-		 @Test
-		    public void testWEB_11745_International() throws Exception
-		    {   
-		    	System.out.println("test method:" +  name.getMethodName() );
-		    	try
-		    	{
-		    	   liveRadioPage.WEB_11745_International();
-		    	}catch(Exception e)
-		    	{
-		    		handleException(e);
-		    	}
-		    	System.out.println(name.getMethodName() + " is Done.");
-		    }
-			
-		 
-		 
-		 @Test
-		 public void testWEB_11778_pauseResume() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		podcastsPage.WEB_11778_pauseResume();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 
-		 
-		 @Test  
-		 public void testWEB_11749_playStationAfterLogin() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		liveRadioPage.WEB_11749_playStationAfterLogin();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 
-		 
-		 @Test
-		 public void testWEB_11755_favorite() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try
-	    	{
-		 	   liveRadioPage.WEB_11755_favorite();
-	    	}catch(Exception e)
-	    	{
-	    		handleException(e);
-	    	}
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 
-		 
-		 @Test
-		 public void testWEB_11743_playLiveWithoutLogin() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		liveRadioPage.WEB_11743_playLiveWithoutLogin();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		
-		 
-		 
-		 @Test
-		 public void testWEB_11753_favStationAndListenHistoryOnPlayer() throws Exception
-		 {   
-		 	System.out.println("test method:" +  name.getMethodName() );
-		 	try{
-		 		liveRadioPage.WEB_11753_favStationAndListenHistoryOnPlayer();
-		 	}catch(Exception e)
-		 	{
-		 		handleException(e);
-		 	}  	
-		 	System.out.println(name.getMethodName() + " is Done.");
-		 }
-		 
-		 */
 		 
 		 
 	    @After
@@ -437,10 +280,5 @@ public class Failed {
             }
 	    }
 	    
-	    //to handle firefox v37.0 specific issue on windows 7
-	    public void closeBrowserSession() throws Exception 
-		  { 
-		    	
-			 Runtime.getRuntime().exec("taskkill /F /IM firefox.exe"); 
-		  }
+	  
 }

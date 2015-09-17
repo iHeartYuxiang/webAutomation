@@ -69,7 +69,7 @@ public class PodcastsPage  extends Page{
 		
 		driver.navigate().back();
 		new Select(topics).selectByIndex(3);
-		//WaitUtility.waitForAjax(driver);
+		WaitUtility.sleep(1500);
 	   // firstPod.click();
 		driver.findElement(By.cssSelector("li.tile:nth-child(1) > div:nth-child(1) > div:nth-child(1) > a:nth-child(1) > div:nth-child(2) > button:nth-child(2)")).click();
 		 try{
@@ -127,8 +127,10 @@ public class PodcastsPage  extends Page{
 	   
 	    makeSureItIsPlayingWithNoWait();
 		
-	    gotoSingedAccountOption(option_myStations, "User Profile");
-	    myStations.click();
+	   // gotoSingedAccountOption(option_myStations, "User Profile");
+	    gotoSingedAccountOption_direct("Profile");
+	   
+	    myStations.click(); 
 		
 		if (!driver.getPageSource().contains(chosenStation))
 			handleError("The chosen podCast is not added to my stations.", "WEB_11774_filterPodAfterLogin");
