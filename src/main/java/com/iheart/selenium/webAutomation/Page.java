@@ -837,8 +837,9 @@ public abstract class Page {
 		
 		
 		if (isThumbDownDone())
-		{	thumbDown.click(); 
-		    WaitUtility.sleep(1500);
+		{    //	thumbDown.click(); 
+		    //WaitUtility.sleep(1500);
+		    return;
 		}
 		try{
 		   thumbDown.click();
