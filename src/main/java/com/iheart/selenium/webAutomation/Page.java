@@ -727,10 +727,11 @@ public abstract class Page {
 		
 		
 		
-		//If this is thumbUp before, double-click
+	
 		if (isThumbUpDone())
-		{	thumbUp.click();
-		    WaitUtility.sleep(1500);
+		{      //	thumbUp.click();
+		       //WaitUtility.sleep(1500);
+		       return;
 		}
 		try{
 		   thumbUp.click();
