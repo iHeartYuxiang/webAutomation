@@ -53,6 +53,7 @@ public class ProfilePage extends Page {
 		
 	   try{
 			firstStation.click();
+			
 			makeSureItIsPlaying();
 			verifyPlayer("station", "WEB_11779_playStations");
 	   }catch(Exception e)

@@ -558,35 +558,11 @@ public abstract class Page {
 	//to be done
 	public void handlePreRoll()
 	{   
-		 WaitUtility.sleep(35000);
+		 WaitUtility.sleep(45000);
 		 
-		 int count = 0;
-		 while (count < 3)
-		 {
-			 if (!isPreRollDone())
-			 {
-				 WaitUtility.sleep(5000);
-				 count++;
-				 System.out.println("Wait extra time on preroll:" + (5*count) + " seconds");
-			 }else 
-				 break;
-		 }
-		
-		if(!isPreRollDone())
-		    handleError("Shit! Preroll stil not complete after 50 seconds. ", "Very Bad!");
 	}
 	
-	private boolean isPreRollDone()
-	{   
-		try {
-			//Check 'My Station' link on the player
-			driver.findElement(By.cssSelector("#player > div.player-right.ui-on-dark > button:nth-child(1) > span:nth-child(3)")).getText();
-			return true;
-		}catch(Exception e)
-		{
-			return false;
-		}
-	}
+	
 	
 	
 	public void makeSureItIsPlayingWithNoWait()
@@ -1083,6 +1059,7 @@ public abstract class Page {
 		String winHandleBefore = switchWindow();
 		
 		faceEmail.sendKeys(FACEBOOKemail);
+		
 		facePass.sendKeys("iheart001");
 		faceLogin.click();
 	    
