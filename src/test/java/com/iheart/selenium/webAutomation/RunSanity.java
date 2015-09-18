@@ -5,6 +5,7 @@ import com.iheart.selenium.webAutomation.*;
 import static org.junit.Assert.*; 
 
 import org.junit.Test; 
+import org.junit.Ignore;
 import org.junit.Before; 
 import org.junit.After; 
 import org.junit.Rule;
@@ -249,7 +250,7 @@ public class RunSanity {
 	    }
 	    
 	    
-	    @Test
+	    @Ignore("Dup of  11738")
 	    public void testWEB_8823_FaceBookSignUp() throws Exception
 	    {
 	       

@@ -455,12 +455,14 @@ public class HomePage extends Page {
 	}
 	
 	public void WEB_11739_loginWithGoog()
-	{
+	{   int count = 0;
 		do{
 			loginButton.click();
 			WaitUtility.sleep(1000);
-		}while (!driver.getPageSource().contains("Don't have an account?"));
+			count++;
+		}while (count < 5 && !driver.getPageSource().contains("Don't have an account?"));
 		
+		waitForSignUp();
 		googleButton.click();
 		WaitUtility.sleep(1000);
 		//Need to switch Windows here

@@ -184,8 +184,7 @@ public class LiveRadioPage extends Page {
 		search("Elvis Duran");
 		firstSearchResult.click();
 		
-	  //wait for pre-roll;
-		WaitUtility.sleep(35 * 1000);
+	    makeSureItIsPlaying();
 		
 		shareFromPlayer();
 		//Verify that we are on share page now
@@ -251,7 +250,7 @@ public class LiveRadioPage extends Page {
 				 
 			}catch(Exception e)
 			{
-				
+			   e.printStackTrace();
 			}
 			
 			WaitUtility.sleep(1000);

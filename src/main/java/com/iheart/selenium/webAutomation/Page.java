@@ -214,7 +214,9 @@ public abstract class Page {
 	@FindBy(css=".icon-skip") public WebElement icon_skip2;
 	//Moved from liveRadioPage. 
 	@FindBy(css="#player > div.player-center > div > button.btn.text.no-border.xsmall > span") public WebElement icon_scan;
-	@FindBy(css=".player-song") public WebElement player_song;
+	//@FindBy(css=".player-song") public WebElement player_song;
+	
+	@FindBy(css="#player > div.player-left > div.player-info > a.player-song")  public WebElement player_song;
 	
 	//player buttons
 	
@@ -267,7 +269,8 @@ public abstract class Page {
 	
 	
 	//FACE BOOK Signup info
-	public final String FACEBOOKemail = "iheartRadio.tribecca@gmail.com";
+	//public final String FACEBOOKemail = "iheartRadio.tribecca@gmail.com";
+	public final String FACEBOOKemail = "iheartRocks999@gmail.com";
 	public final String _PASSWORD = "iheart001";
 
    public static WebDriver driver;
@@ -281,7 +284,7 @@ public abstract class Page {
 	   
    }
 	
-   public Page(WebDriver _driver)
+   public Page(WebDriver _driver)    
    {
 	   driver = _driver;
    }
@@ -501,7 +504,7 @@ public abstract class Page {
 	}
 	
 	public void signUp()
-	{
+	{   waitForSignUp();
 		//Signup 
 		//tweak email so that we won't get user already singed up error 
 		String  randomEmail_firstPart = getCurrentDateInMilli();
@@ -529,40 +532,7 @@ public abstract class Page {
 	    
 	}
 	
-	public void signUp_obsolete()
-	{
-		//Signup 
-		//tweak email so that we won't get user already singed up error 
-		String  randomEmail_firstPart = getCurrentDateInMilli();
-		//String _email = randomEmail_firstPart + "@gmail.com";
-		String _email = randomEmail_firstPart + "@mailinator.com";
-		System.out.println("See randomEmail:" + _email);
-		WaitUtility.sleep(800);
-	    email.sendKeys(_email);
-	    password.sendKeys(_PASSWORD);
-	    zipCode.sendKeys("10013");
-	    
-	    WaitUtility.sleep(500);
-	    gender_female.click();
-	    WaitUtility.sleep(500);
-	    
-	    //new Select(birthYear).selectByVisibleText("1980");
-	    new Select(birthYear).selectByValue("1980");
-	    WaitUtility.sleep(500);
-	    System.out.println("input birth year.");
-	  
-	    termsAcceptanceDate.click();
-	   
-	    signUp.click();
-	    
-	    WaitUtility.sleep(2000);
-	    System.out.println("see signed account:" + signedAccount.getText() );
-	    signedAccount.click();
-	    
-	    if (!signedAccount.getText().contains(randomEmail_firstPart))
-	    	errors.append("Signup failed.");
-	    
-	}
+	
 	
 	public void makeSureItIsPlaying()
 	{   
@@ -589,27 +559,34 @@ public abstract class Page {
 	public void handlePreRoll()
 	{   
 		 WaitUtility.sleep(35000);
-		//WaitUtility.sleep(45000);
-	}
-	
-	public void handlePreRoll_obsolete()
-	{   
-		  int milliSeconds = 0;
-		  //Wait for pre-roll if adContainer is detected
-	      String duration = driver.findElement(By.cssSelector(".seconds")).getText();
-		   System.out.println("duration:" + duration);
-		   if (duration!= null && duration.length()>0)
-		   {
-			   milliSeconds = (Integer.parseInt(duration))*1000;
-		       System.out.println("Pre-roll will last (:milliSeconds):" + milliSeconds );
-		       WaitUtility.sleep(milliSeconds + 5000);
-		   }else
-		   {
-			   System.out.println("No pre-roll is detected.");
-		   }
+		 
+		 int count = 0;
+		 while (count < 3)
+		 {
+			 if (!isPreRollDone())
+			 {
+				 WaitUtility.sleep(5000);
+				 count++;
+				 System.out.println("Wait extra time on preroll:" + (5*count) + " seconds");
+			 }else 
+				 break;
+		 }
 		
+		if(!isPreRollDone())
+		    handleError("Shit! Preroll stil not complete after 50 seconds. ", "Very Bad!");
 	}
 	
+	private boolean isPreRollDone()
+	{   
+		try {
+			//Check 'My Station' link on the player
+			driver.findElement(By.cssSelector("#player > div.player-right.ui-on-dark > button:nth-child(1) > span:nth-child(3)")).getText();
+			return true;
+		}catch(Exception e)
+		{
+			return false;
+		}
+	}
 	
 	
 	public void makeSureItIsPlayingWithNoWait()
@@ -1091,7 +1068,9 @@ public abstract class Page {
 	
 	
 	public void faceBookSignUp()
-	{   try{
+	{   
+		waitForSignUp();
+		try{
 		   faceBook.click();
 		   WaitUtility.sleep(1000);
 		}catch(Exception e)
@@ -1110,6 +1089,33 @@ public abstract class Page {
 	    WaitUtility.sleep(2000);
 	    
 	    driver.switchTo().window(winHandleBefore);
+	}
+	
+	
+	public void waitForSignUp()
+	{
+		int count = 0;
+		while (count < 3)
+		{	
+			if (!isSignUpShown()) 
+			{	
+				WaitUtility.sleep(6*1000);
+				count++;
+				System.out.println("Waited for signup:" + count + " time(s)");
+			}else 
+				break;
+		}	
+	}
+	
+	private boolean isSignUpShown()
+	{
+		try{
+			driver.findElement(By.cssSelector("#dialog > div > div.dialog.ui-on-grey > div.wrapper > header > h2")).getText();
+		    return true;
+		}catch(Exception e)
+		{   
+			return false;
+		}
 	}
 	
 	
