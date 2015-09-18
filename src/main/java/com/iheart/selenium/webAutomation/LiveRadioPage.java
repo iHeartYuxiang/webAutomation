@@ -438,13 +438,10 @@ public class LiveRadioPage extends Page {
 		makeSureItIsPlaying();
 		
 		//Sometimes it takes extra long time for pre-roll to complete
-		try{
-			icon_scan.getText();
-		}catch(Exception e)
-		{
-			WaitUtility.sleep(10*1000);
+		
+		WaitUtility.sleep(15*1000);
 			
-		}
+		
 		
 		doThumbDown("WEB_11754_thumpDown");
 		
