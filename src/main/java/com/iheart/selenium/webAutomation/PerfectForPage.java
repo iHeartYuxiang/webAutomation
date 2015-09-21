@@ -179,7 +179,7 @@ public class PerfectForPage extends Page{
 		}catch(Exception e)
 		{
 			//Give pre-roll more time
-			WaitUtility.sleep(5000);
+			WaitUtility.sleep(10000);
 		}
 		
 		for (int i = 0; i < 6; i++)

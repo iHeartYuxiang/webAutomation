@@ -364,12 +364,19 @@ public abstract class Page {
    
    public void login()
 	{   
-		    
+		int count = 6;    
 		do{
-			loginButton.click();
+			try{
+			   loginButton.click();
+			   
+			}catch(Exception e)
+			{
+				
+			}
 			WaitUtility.sleep(500);
 			
-		}while (!driver.getPageSource().contains("Don't have an account?"));
+			count++;
+		}while (count< 6 && !driver.getPageSource().contains("Don't have an account?"));
 		
 		//WaitUtility.sleep(1500);
     	userName.sendKeys(FACEBOOKemail);

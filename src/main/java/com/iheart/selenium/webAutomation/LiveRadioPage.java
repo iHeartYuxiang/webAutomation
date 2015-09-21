@@ -383,7 +383,15 @@ public class LiveRadioPage extends Page {
 		System.out.println("song playing:" + songTitle);
 		icon_scan.click();
 		WaitUtility.sleep(1000);
-		String songAfter = player_song.getText();
+		
+		String songAfter = "";
+		try{
+		  songAfter =player_song.getText();
+		}catch(Exception e)
+		{
+			System.out.println("Hit the commercial.. ");
+			return;
+		}
 		System.out.println("after skip:"  + songAfter);
 		if (songTitle.equalsIgnoreCase(songAfter))
 			handleError("Scan button is not working.", "WEB_11746_PlayStopScan" );
@@ -421,9 +429,11 @@ public class LiveRadioPage extends Page {
 		
 		//gotoExplorerOption(option_liveRadio, "Live");
 		comeToThisPage_direct();
-		firstLive.click();
-		makeSureItIsNotPlaying();
 		
+		//firstLive.click();
+		//makeSureItIsNotPlaying();
+		driver.findElement(By.cssSelector("#main > div.directory-live > section > ul > li:nth-child(1) > div > div.station-text > a")).click();
+		WaitUtility.sleep(800);
 		doFavorite("WEB_11755_favorite");
 		
 	}
