@@ -269,8 +269,8 @@ public abstract class Page {
 	
 	
 	//FACE BOOK Signup info
-	public final String FACEBOOKemail = "iheartRadio.tribecca@gmail.com";
-//	public final String FACEBOOKemail = "iheartRocks999@gmail.com";
+//	public final String FACEBOOKemail = "iheartRadio.tribecca@gmail.com";
+	public final String FACEBOOKemail = "iheartRocks999@gmail.com";
 	public final String _PASSWORD = "iheart001";
 
    public static WebDriver driver;
