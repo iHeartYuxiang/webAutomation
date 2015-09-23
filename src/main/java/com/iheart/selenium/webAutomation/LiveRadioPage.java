@@ -443,7 +443,13 @@ public class LiveRadioPage extends Page {
 	{   login();
 		
 		comeToThisPage_direct();
-		firstLive.click();
+		try{
+	    	firstLive.click();
+		}catch(Exception e)
+		{
+			WaitUtility.sleep(1000);
+			firstLive.click();
+		}
 		WaitUtility.sleep(1000);
 		makeSureItIsPlaying();
 		
@@ -516,7 +522,7 @@ public class LiveRadioPage extends Page {
 		System.out.println("SEE new url:"  + newURL );
 		
 		driver.get(newURL);
-		WaitUtility.sleep(1000);
+		WaitUtility.sleep(2000);
 	}
 	
 	public void gotoGenrePage_direct()
