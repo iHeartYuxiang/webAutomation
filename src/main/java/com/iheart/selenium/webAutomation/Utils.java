@@ -24,6 +24,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
+import org.openqa.selenium.firefox.internal.ProfilesIni;
+import org.openqa.selenium.firefox.FirefoxProfile;
 
 
 
@@ -47,10 +49,12 @@ public class Utils {
 	{   WebDriver driver;
 	
 	    if (browser.equalsIgnoreCase("firefox"))
-	
-	        driver = new FirefoxDriver();
-	
-	    else if (browser.equalsIgnoreCase("chrome"))
+	    { 
+	        //driver = new FirefoxDriver();
+		 ProfilesIni profile = new ProfilesIni();
+		FirefoxProfile ffprofile = profile.getProfile("SELENIUM");
+		driver = new FirefoxDriver(ffprofile);
+	    }else if (browser.equalsIgnoreCase("chrome"))
 	    {   //Set actual path to the driver file
 	
 	       System.setProperty("webdriver.chrome.driver", "C:\\Users\\mmatos\\git\\lib\\chromedriver.exe");
