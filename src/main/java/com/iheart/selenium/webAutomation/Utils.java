@@ -51,6 +51,7 @@ public class Utils {
 	    if (browser.equalsIgnoreCase("firefox"))
 	    { 
 	        //driver = new FirefoxDriver();
+	        System.out.println("Launching firefox with profile..");
 		 ProfilesIni profile = new ProfilesIni();
 		FirefoxProfile ffprofile = profile.getProfile("SELENIUM");
 		driver = new FirefoxDriver(ffprofile);
