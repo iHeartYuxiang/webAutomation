@@ -9,6 +9,9 @@ import java.util.List;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import java.text.DateFormat;
+import java.util.Date;
+
 import org.junit.runner.Description;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.WebDriver;
@@ -1028,4 +1031,24 @@ public abstract class Page {
 		    	
 		    }
 	}
+	
+	public void takeScreenshot(String name)
+	{
+		 try{
+			
+	    	   Page.takeScreenshot(driver, name);
+          }catch(Exception eX)
+          {
+          	
+          }
+	}
+	
+	public void logDate(String hint)
+	{
+		 DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		   //get current date time with Date()
+	     Date date = new Date();
+	     System.out.println(hint + ":" + dateFormat.format(date));
+	}
+	
 }

@@ -45,23 +45,28 @@ public class ProfilePage extends Page {
    
 
 	public void WEB_11779_playStations()
-	{
+	{  //This one constantly runs into trouble. So take screenshot on each step for debugging
+		logDate("about to login");
 		login();
-		//gotoSingedAccountOption(option_profile, "User Profile");
+		logDate("about to go to profile page");
 		comeToThisPage_direct();
 		
+		logDate("about to click first station");
 	   try{
 			firstStation.click();
 			makeSureItIsPlaying();
 			verifyPlayer("station", "WEB_11779_playStations");
+			logDate("station is verified. ");
+			takeScreenshot("afterSationIsVERFIED");
 	   }catch(Exception e)
-	   {
-		   
+	   {   e.printStackTrace();
+		   logDate("Exception is thrown");
+			takeScreenshot("afterException");
 	   }
 		System.out.println("Done with station.");
 		driver.navigate().refresh();
 		comeToThisPage_direct();
-		
+		logDate("About to click history. ");
 		try{
 			history.click();
 			WaitUtility.sleep(2000);
@@ -69,40 +74,55 @@ public class ProfilePage extends Page {
 			makeSureItIsPlaying();
 			
 			verifyPlayer("chosen song from Listen Hisotry ", "WEB_11779_playStations");
+			
+			takeScreenshot("afterHistoryIsVERFIED");
 		 }catch(Exception e)
 		   {
-			   
+			 e.printStackTrace();
+			   logDate("Exception is thrown from history block.");
+				takeScreenshot("afterExceptionFromHisotry");
 		   }		
-		System.out.println("Done with Listen Hisotry.");
+		logDate("Done with Listen Hisotry.");
 		
 		driver.navigate().refresh();
 		comeToThisPage_direct();
+		logDate("About to click favoriteSong. ");
 		try{
 			favoriteSongs.click();
 			WaitUtility.sleep(2000);
 			firstFavSong.click();
 			makeSureItIsPlaying();
 			verifyPlayer("chosen favorite song", "WEB_11779_playStations");
+			takeScreenshot("afterFavoriteSoneIsVERFIED");
 		 }catch(Exception e)
 		   {
-			   
-		   }	
-		System.out.println("Done with favorite song.");
+			 e.printStackTrace();
+			   logDate("Exception is thrown from Favorite Song block.");
+				takeScreenshot("afterExceptionFromFavSong");
+		   }
+		
+		logDate("Done with favorite song.");
 		
 		driver.navigate().refresh();
 		comeToThisPage_direct();
 		
+		logDate("About to click favoriteEpisode. ");
 		try{
 		    favoriteEpisodes.click();
 			WaitUtility.sleep(2000);
 			firstFavEpisode.click();
 			makeSureItIsPlaying();
 			verifyPlayer("favorite episode", "WEB_11779_playStations");
+			takeScreenshot("afterFavariteEpisodeIsVERFIED");
 		 }catch(Exception e)
 		   {
-			   
+			 e.printStackTrace();
+			   logDate("Exception is thrown from FAV EPISODE block.");
+				takeScreenshot("afterExceptionFromFavEpisode");
 		   }	
-		System.out.println("Done with favorite episode.");
+		logDate("Done with favoriteEpisode. ");
+		
+		
 		
 	}
 	
@@ -167,6 +187,9 @@ public class ProfilePage extends Page {
 		
 		//Need to add some friends to the test account in FB to see the expected behavior.
 	}	
+	
+	
+	
 	
 	public void WEB_11783_logout()
 	{
