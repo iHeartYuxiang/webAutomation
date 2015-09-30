@@ -719,7 +719,12 @@ public abstract class Page {
 		//Try a little bit more
 		while(isThumbUpDisabled() && count < 3)
 		{	System.out.println("thumbUp button is disabled. Scan now..");
-			icon_scan.click();
+		        try{
+			   icon_scan.click();
+		        }catch(Exception e)
+		        {
+		        	
+		        }
 			count++;
 			WaitUtility.sleep(2000);
 		}
@@ -828,7 +833,12 @@ public abstract class Page {
 		//Try a little bit more
 		while(isThumbDownDisabled() && count < 3)
 		{	System.out.println("thumbDown button is disabled. Scan now..");
-			icon_scan.click();
+		        try{
+			   icon_scan.click();
+		        }catch(Exception e)
+		        {
+		        	
+		        }
 			count++;
 			WaitUtility.sleep(2000);
 		}
