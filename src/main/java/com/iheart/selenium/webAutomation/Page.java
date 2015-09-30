@@ -712,7 +712,7 @@ public abstract class Page {
 	
 	public void doThumbUp(String methodName)
 	{  
-	    WaitUtility.sleep(1000);
+	    WaitUtility.sleep(10000);
 		//Sometimes the thumbUp button is disabled, keep scan(At most 10 times though to avoid hang) until thumbUpiCON is enabled.
 		int count = 0; 
 		
@@ -821,7 +821,7 @@ public abstract class Page {
 	
 	public void doThumbDown(String methodName)
 	{  
-	    WaitUtility.sleep(1000);
+	    WaitUtility.sleep(10000);
 		//Sometimes the thumbDown button is disabled, keep scan(At most 3 times though to avoid hang) until thumbUpiCON is enabled.
 		int count = 0; 
 		
