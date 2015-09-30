@@ -65,6 +65,22 @@ public class RunDailyTest {
        
         Page.getErrors().delete(0, Page.getErrors().length());
     }
+    
+    
+		 @Test
+	     public void testWEB_11779_playStations() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	            profilePage.WEB_11779_playStations();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }  
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
+
+/*
 
 	    @Test
 	    public void testWEB_11734_startUp() throws Exception
@@ -357,7 +373,7 @@ public class RunDailyTest {
 	        }
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
-	     
+*/	     
 	
 	     @After
 		    public void tearDown() throws Exception{
