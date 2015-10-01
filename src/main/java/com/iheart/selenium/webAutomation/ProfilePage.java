@@ -215,7 +215,7 @@ public class ProfilePage extends Page {
 		
 			count++;
 		
-		}while(count <5 && !isLoggedOut());	
+		}while(count <10 && !isLoggedOut());	
 	}
 	
 	

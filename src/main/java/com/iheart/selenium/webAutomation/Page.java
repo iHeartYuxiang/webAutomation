@@ -364,8 +364,9 @@ public abstract class Page {
    
    public void login()
 	{   
-		int count = 6;    
+		int count = 0;    
 		do{
+			
 			try{
 			   loginButton.click();
 			   
