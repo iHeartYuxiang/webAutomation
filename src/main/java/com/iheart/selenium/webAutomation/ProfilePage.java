@@ -187,9 +187,10 @@ public class ProfilePage extends Page {
 		}
 		
 		//verify that login link is present
+		/*
 		if (!isLoggedOut())
 			handleError("Log out failed.", "WEB_11783_logout");
-		
+		*/
 	}	
 	
 	
