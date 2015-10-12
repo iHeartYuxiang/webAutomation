@@ -292,7 +292,8 @@ public class LiveRadioPage extends Page {
 		String chosenStation = firstStationLabel.getText();
 		System.out.println("chosen station:" + chosenStation);
 		firstStation.click();
-		WaitUtility.sleep(3000);
+		//Increase waiting time since sometime it is slow or it is just buffering
+		WaitUtility.sleep(8000);
 		
 		String playingStation = stationPlaying.getText();
 		System.out.println("station PLAYING:" + playingStation);
