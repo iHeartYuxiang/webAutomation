@@ -566,7 +566,7 @@ public abstract class Page {
 	//to be done
 	public void handlePreRoll()
 	{   
-		 WaitUtility.sleep(45000);
+		 WaitUtility.sleep(48000);
 		 
 	}
 	
