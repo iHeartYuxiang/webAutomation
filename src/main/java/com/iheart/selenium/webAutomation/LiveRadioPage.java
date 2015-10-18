@@ -164,6 +164,8 @@ public class LiveRadioPage extends Page {
     	firstStation.click();
 		
 		makeSureItIsPlaying();
+	//Give pre-roll more time 
+	WaitUtility.sleep(15000);
 		//Verify it is playing
 	    verifyPlayer("filtered station");
 		
