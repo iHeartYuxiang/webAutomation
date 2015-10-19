@@ -163,7 +163,9 @@ public class LiveRadioPage extends Page {
     	String chosenStation = firstStation.getText();
     	firstStation.click();
 		
-		makeSureItIsPlaying();
+	makeSureItIsPlaying();
+	WaitUtility.sleep(10000); //Give this case extra time for pre-roll
+		
 		//Verify it is playing
 	    verifyPlayer("filtered station");
 		
