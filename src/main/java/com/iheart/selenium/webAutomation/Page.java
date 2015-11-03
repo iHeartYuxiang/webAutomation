@@ -336,6 +336,30 @@ public abstract class Page {
    }
    
    
+   public static void takeScreenshot_forJenkins(WebDriver driver, String testMethod, Description description) throws Exception 
+   {      try {
+       
+				File screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		
+		       // String filePathRoot = "C:\\_Jenkins\\workspace\\" + jenkinsJobName + "\\target\\surefire-reports\\";
+				String currentPath =  System.getProperty("user.dir");
+				/* This is for windows
+				String path = currentPath + "\\target\\surefire-reports\\";
+				 String fullFilePath = path + description.getClassName() + "\\" + description.getMethodName() + ".jpg";
+				*/
+		
+				String path = currentPath + "/target/surefire-reports/"; //for mac
+		        String fullFilePath = path + description.getClassName() + "/" + description.getMethodName() + ".jpg";
+		
+		        FileUtils.copyFile(screenshot, new File(fullFilePath));
+		        System.out.println("Screenshot is taken: " + fullFilePath);
+				
+		    } catch(Exception ex) {
+		        ex.printStackTrace();
+		        System.out.println("Exception taking screenshot.");
+		    }
+   }
+   
    
    public static void takeScreenshotInCloud(WebDriver driver, String testMethod) throws Exception 
    {      
