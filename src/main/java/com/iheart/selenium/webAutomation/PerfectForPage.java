@@ -41,7 +41,7 @@ public class PerfectForPage extends Page{
 	    makeSureItIsPlaying();
 	    
 		//Verify sign-up gate shows up
-		WaitUtility.sleep(10*1000);
+		WaitUtility.sleep(20*1000);
 	    if(!isSoftGateShow())
 			handleError("Sign up gate is not displayed.", "WEB_11766_browsePerfect");
 		
