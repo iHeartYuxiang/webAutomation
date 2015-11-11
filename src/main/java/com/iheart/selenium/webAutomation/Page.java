@@ -964,7 +964,7 @@ public abstract class Page {
 	   
 	}
 	
-	public boolean isSoftGateShow()
+	public boolean isSoftGateShow_old()
 	{   WaitUtility.sleep(2000);
 	    try{
 	       signupHint.getText();
@@ -983,10 +983,18 @@ public abstract class Page {
 	    		   
 	    }
 		//return signupHint.getText().contains("Have an account?");
-	    //return signupHint.getText().contains("Sign Up");
-	    return signupHint.getText().contains("Connect with your favorites");
+	    return signupHint.getText().contains("Sign Up");
+	   
 	}
 	
+	
+	public boolean isSoftGateShow()
+	{   WaitUtility.sleep(2000);
+	    String pageContent = driver.getPageSource();
+	    System.out.println("See soft gate page:" + pageContent);
+	    return pageContent.contains("Have an account?");
+	   
+	}
 	
 	public void verifyPlayer(String category)
 	{  
