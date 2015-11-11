@@ -43,8 +43,10 @@ public class PerfectForPage extends Page{
 		//Verify sign-up gate shows up
 		WaitUtility.sleep(20*1000);
 	    if(!isSoftGateShow())
-			handleError("Sign up gate is not displayed.", "WEB_11766_browsePerfect");
-		
+	    {		
+	    	handleError("Sign up gate is not displayed.", "WEB_11766_browsePerfect");
+	    	return;
+	    }	
 		//driver.navigate().back();
 	    
 	    comeToThisPage_direct();
