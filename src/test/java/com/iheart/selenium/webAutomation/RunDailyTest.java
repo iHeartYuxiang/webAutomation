@@ -67,6 +67,23 @@ public class RunDailyTest {
         Page.getErrors().delete(0, Page.getErrors().length());
     }
 
+     @Test
+	     public void testWEB_11766_browsePerfect() throws Exception
+	     {   
+	         System.out.println("test method:" +  name.getMethodName() );
+	         try{
+	             perfectForPage.WEB_11766_browsePerfect();
+	         }catch(Exception e)
+	         {
+	             handleException(e);
+	         }
+	         System.out.println(name.getMethodName() + " is Done.");
+	     }
+	     
+	    /* 
+
+
+
 	    @Test
 	    public void testWEB_11734_startUp() throws Exception
 	    {
@@ -359,7 +376,7 @@ public class RunDailyTest {
 	         System.out.println(name.getMethodName() + " is Done.");
 	     }
 	     
-	
+	*/
 	     @After
 		    public void tearDown() throws Exception{
 	    	   
