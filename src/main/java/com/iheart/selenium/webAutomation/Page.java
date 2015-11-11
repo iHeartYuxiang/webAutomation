@@ -983,7 +983,8 @@ public abstract class Page {
 	    		   
 	    }
 		//return signupHint.getText().contains("Have an account?");
-	    return signupHint.getText().contains("Sign Up");
+	    //return signupHint.getText().contains("Sign Up");
+	    return signupHint.getText().contains("Connect with your favorites");
 	}
 	
 	
